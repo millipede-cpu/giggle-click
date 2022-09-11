@@ -1,0 +1,21 @@
+{
+  "name": "testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PJSalter/Testing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PJSalter/Testing/issues"
+  },
+  "homepage": "https://github.com/PJSalter/Testing#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.25.2"
+  }
+}

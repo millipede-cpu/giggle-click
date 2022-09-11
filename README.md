@@ -1,1 +1,3 @@
-# Testing with Playwright
+# Giggle Click
+
+## Testing with Playwright 🎭

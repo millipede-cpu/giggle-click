@@ -13,6 +13,22 @@ interface props {
   newJokeToLaugh: NextBigJoke;
 }
 
-export const AppliedTheFavouriteJoke: React.FC<props> = (props) => {
-  return <li>HAHAHA THATS HILARIOUS!!!</li>;
+export const AppliedTheFavouriteJoke: React.FC<props> = ({
+  newJokeToLaugh,
+}) => {
+  // placing a checkbox in each list item
+  // the checkbox will be checked once complete type is true.
+  // This will have a label with the text of the joke.
+  return (
+    <li>
+      <label
+        style={{
+          textDecoration: newJokeToLaugh.complete ? "line-through" : undefined,
+        }}
+      ></label>
+      <input type="checkbox" checked={newJokeToLaugh.complete} />
+      {newJokeToLaugh.text}
+      {/* HAHAHA THATS HILARIOUS!!! */}
+    </li>
+  );
 };

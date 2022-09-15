@@ -11,4 +11,7 @@
 
 ## Testing with Playwright 🎭
 
+![laugh](https://user-images.githubusercontent.com/45575016/190519190-7bfc56a5-c0fa-4687-bdba-14f2c605cb3a.gif)
+
+
 # Have a Giggly bubbly fun time 

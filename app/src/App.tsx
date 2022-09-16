@@ -1,9 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import "./App.css";
+import { AppliedTheFavouriteJoke } from "./AppliedTheFavouriteJoke";
+
+const newJokeToLaugh: NextBigJoke[] = [
+  {
+    text: "What do you call a yam with a broom ? A sweep potato.",
+    complete: false,
+  },
+  {
+    text: "Why did the ice cream van break down? Because there was a rocky road!",
+    complete: true,
+  },
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <div className="App">
@@ -16,6 +28,10 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      <ul>
+        <AppliedTheFavouriteJoke newJokeToLaugh={newJokeToLaugh[0]} />
+        <AppliedTheFavouriteJoke newJokeToLaugh={newJokeToLaugh[1]} />
+      </ul>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -28,7 +44,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

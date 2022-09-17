@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("The joke is complete, type of boolean equal to true with a checkbox", async ({
+test("Checkbox with a type of boolean has a falsy value until the checkbox is clicked and complete", async ({
   page,
 }) => {
   await page.goto("http://localhost:5173");

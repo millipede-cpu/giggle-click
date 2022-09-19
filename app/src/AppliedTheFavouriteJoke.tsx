@@ -22,10 +22,13 @@ export const AppliedTheFavouriteJoke: React.FC<props> = ({
   return (
     <li>
       <label
+        htmlFor="add-joke"
         style={{
           textDecoration: newJokeToLaugh.complete ? "line-through" : undefined,
         }}
-      ></label>
+      >
+        Add Joke
+      </label>
       <input type="checkbox" checked={newJokeToLaugh.complete} />
       {newJokeToLaugh.text}
       {/* HAHAHA THATS HILARIOUS!!! */}

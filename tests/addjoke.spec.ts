@@ -6,4 +6,5 @@ test("enter a joke and see it rendered on a page", async ({ page }) => {
   await page
     .locator("text=add-joke")
     .fill("Do tomatoes and potatoes have anything in common?Toes.");
+  await page.locator("button").click();
 });

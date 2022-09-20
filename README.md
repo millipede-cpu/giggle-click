@@ -1,5 +1,9 @@
 # Giggle Click
 
+## Designed and Developed by:
+- [Peter](https://github.com/PJSalter)
+- [Milly](https://github.com/millipede-cpu)
+
 # About the App:
 
 - The aim of the app is for the user to add there favourite jokes.
@@ -9,7 +13,7 @@
 - User will be able to check off the joke once it's been said.
 - User will be able to delete joke or edit when needed.
 
-## Testing with Playwright 🎭
+## TDD Testing with Playwright 🎭
 
 ![laugh](https://user-images.githubusercontent.com/45575016/190519190-7bfc56a5-c0fa-4687-bdba-14f2c605cb3a.gif)
 

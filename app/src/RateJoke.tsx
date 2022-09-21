@@ -6,10 +6,14 @@ export default function RateJoke() {
 
   return (
     <>
-      <button onClick={() => setHappy(!happy)}>Happy</button>
+      <button className="happy-click" onClick={() => setHappy(!happy)}>
+        Happy
+      </button>
       {happy ? <span className="happy">&#128514;</span> : null}
 
-      <button onClick={() => setSad(!sad)}>Sad</button>
+      <button className="sad-click" onClick={() => setSad(!sad)}>
+        Sad
+      </button>
       {sad ? <span className="sad">&#128529;</span> : null}
     </>
   );

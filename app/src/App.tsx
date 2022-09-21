@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AppliedTheFavouriteJoke } from "./AppliedTheFavouriteJoke";
 import AddJoke from "./AddJoke";
+import RateJoke from "./RateJoke";
 
 const newJokeToLaugh: NextBigJoke[] = [
   {
@@ -29,6 +30,7 @@ function App() {
           count is {count}
         </button>
         <AddJoke />
+        <RateJoke />
       </div>
     </div>
   );

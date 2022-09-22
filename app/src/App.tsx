@@ -51,3 +51,7 @@ const AppStyle = styled.div`
   max-width: 100%;
   height: 100vh;
 `;
+
+const StyledTitle = styled.h1`
+  color: FD7094;
+`;

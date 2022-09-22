@@ -19,7 +19,7 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="App">
+    <AppStyle>
       <div></div>
       <h1>Giggle Click</h1>
       <ul>
@@ -33,8 +33,12 @@ function App() {
         <AddJoke />
         <RateJoke />
       </div>
-    </div>
+    </AppStyle>
   );
 }
 
 export default App;
+
+const AppStyle = styled.div`
+  background-color: #add8e6;
+`;

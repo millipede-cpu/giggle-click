@@ -17,5 +17,8 @@
   "homepage": "https://github.com/PJSalter/Testing#readme",
   "devDependencies": {
     "@playwright/test": "^1.25.2"
+  },
+  "dependencies": {
+    "styled-components": "^5.3.5"
   }
 }

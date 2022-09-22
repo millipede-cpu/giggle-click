@@ -41,4 +41,13 @@ export default App;
 
 const AppStyle = styled.div`
   background-color: #add8e6;
+  display: flex;
+  // flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  height: 100vh;
 `;

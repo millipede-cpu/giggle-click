@@ -1,38 +1,37 @@
 // this type will be used throughout the app so it's best to have it in it's own type declaration file.
+// import * as Babel from "@babel/core";
+
+// export = babelPluginMacros;
 
 interface NextBigJoke {
   text: string;
   complete: boolean;
 }
 
-import * as Babel from "@babel/core";
+// declare namespace babelPluginMacros {
+//   interface References {
+//     [key: string]: Babel.NodePath[];
+//   }
 
-export = babelPluginMacros;
+//   interface Options {
+//     configName?: string | undefined;
+//   }
 
-declare namespace babelPluginMacros {
-  interface References {
-    [key: string]: Babel.NodePath[];
-  }
+//   interface MacroParams {
+//     references: { default: Babel.NodePath[] } & References;
+//     state: Babel.PluginPass;
+//     babel: typeof Babel;
+//     config?: { [key: string]: any } | undefined;
+//   }
 
-  interface Options {
-    configName?: string | undefined;
-  }
+//   type MacroHandler = (params: MacroParams) => void;
 
-  interface MacroParams {
-    references: { default: Babel.NodePath[] } & References;
-    state: Babel.PluginPass;
-    babel: typeof Babel;
-    config?: { [key: string]: any } | undefined;
-  }
+//   class MacroError extends Error {}
 
-  type MacroHandler = (params: MacroParams) => void;
+//   function createMacro(handler: MacroHandler, options?: Options): any;
+// }
 
-  class MacroError extends Error {}
-
-  function createMacro(handler: MacroHandler, options?: Options): any;
-}
-
-declare function babelPluginMacros(
-  babel: typeof Babel,
-  options: any
-): Babel.PluginObj;
+// declare function babelPluginMacros(
+//   babel: typeof Babel,
+//   options: any
+// ): Babel.PluginObj;

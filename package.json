@@ -16,6 +16,15 @@
   },
   "homepage": "https://github.com/PJSalter/Testing#readme",
   "devDependencies": {
-    "@playwright/test": "^1.25.2"
+    "@playwright/test": "^1.25.2",
+    "babel-plugin-styled-components": "^2.0.7"
+  },
+  "dependencies": {
+    "@types/babel-plugin-macros": "^2.8.5",
+    "@types/styled-components": "^5.1.26",
+    "styled-components": "^5.3.5"
+  },
+  "resolutions": {
+    "styled-components": "^5"
   }
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AppliedTheFavouriteJoke } from "./AppliedTheFavouriteJoke";
 import AddJoke from "./AddJoke";
 import RateJoke from "./RateJoke";
+import styled from "styled-components";
 
 const newJokeToLaugh: NextBigJoke[] = [
   {
@@ -18,7 +19,7 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="App">
+    <AppStyle>
       <div></div>
       <h1>Giggle Click</h1>
       <ul>
@@ -32,8 +33,25 @@ function App() {
         <AddJoke />
         <RateJoke />
       </div>
-    </div>
+    </AppStyle>
   );
 }
 
 export default App;
+
+const AppStyle = styled.div`
+  background-color: #add8e6;
+  display: flex;
+  // flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  height: 100vh;
+`;
+
+const StyledTitle = styled.h1`
+  color: FD7094;
+`;

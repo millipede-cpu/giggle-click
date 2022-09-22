@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AppliedTheFavouriteJoke } from "./AppliedTheFavouriteJoke";
 import AddJoke from "./AddJoke";
 import RateJoke from "./RateJoke";
+import styled from "styled-components";
 
 const newJokeToLaugh: NextBigJoke[] = [
   {

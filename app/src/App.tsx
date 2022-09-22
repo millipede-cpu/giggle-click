@@ -21,7 +21,7 @@ function App() {
   return (
     <AppStyle>
       <div></div>
-      <h1>Giggle Click</h1>
+      <StyledTitle>Giggle Click</StyledTitle>
       <ul>
         <AppliedTheFavouriteJoke newJokeToLaugh={newJokeToLaugh[0]} />
         <AppliedTheFavouriteJoke newJokeToLaugh={newJokeToLaugh[1]} />
@@ -53,5 +53,5 @@ const AppStyle = styled.div`
 `;
 
 const StyledTitle = styled.h1`
-  color: FD7094;
+  color: #fd7094;
 `;

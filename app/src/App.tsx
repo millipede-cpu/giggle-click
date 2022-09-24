@@ -3,6 +3,7 @@ import { AppliedTheFavouriteJoke } from "./AppliedTheFavouriteJoke";
 import AddJoke from "./AddJoke";
 import RateJoke from "./RateJoke";
 import styled from "styled-components";
+import NextButton from "./NextButton";
 
 const newJokeToLaugh: NextBigJoke[] = [
   {
@@ -32,6 +33,7 @@ function App() {
         </button>
         <AddJoke />
         <RateJoke />
+        <NextButton />
       </div>
     </AppStyle>
   );

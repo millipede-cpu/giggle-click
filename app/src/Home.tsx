@@ -21,8 +21,8 @@ export default function Home({ onClick }: { onClick: () => void }) {
   return (
     <>
       <AppStyle>
-        <Link to={"/joke-randomiser"} className="home-link">
-          🃏🔀
+        <Link to={"/joke-randomiser"}>
+          <NextButton {...onClick} />
         </Link>
         <StyledTitle>Giggle Click</StyledTitle>
         <ul>
@@ -34,7 +34,6 @@ export default function Home({ onClick }: { onClick: () => void }) {
             count is {count}
           </button>
           <AddJoke />
-          <NextButton {...onClick} />
         </div>
       </AppStyle>
     </>

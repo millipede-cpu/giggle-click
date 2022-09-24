@@ -1,7 +1,6 @@
+import { useNavigate } from "react-router-dom";
+
 export default function NextButton() {
-  return (
-    <button onClick={() => console.log("hahahah")}>
-      Hi I'm a button! Click me for more giggles! 🤡🤡🤡 Hehe
-    </button>
-  );
+  const navigate = useNavigate();
+  return <button onClick={() => navigate(1)}>Click for giggles 🤡🤡🤡</button>;
 }

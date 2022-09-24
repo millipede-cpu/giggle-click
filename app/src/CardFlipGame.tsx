@@ -1,7 +1,13 @@
 import styled from "styled-components";
+import NextButton from "./NextButton";
 
 export default function CardFlipGame() {
-  return <Title>Card Flip Game</Title>;
+  return (
+    <>
+      <NextButton />
+      <Title>Card Flip Game</Title>
+    </>
+  );
 }
 
 const Title = styled.h1`

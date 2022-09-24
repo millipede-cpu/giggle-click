@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppliedTheFavouriteJoke } from "./AppliedTheFavouriteJoke";
 import AddJoke from "./AddJoke";
-import RateJoke from "./RateJoke";
 import styled from "styled-components";
 import NextButton from "./NextButton";
+import JokeRandomiser from "./JokeRandomiser";
+import RateJoke from "./RateJoke";
+import CardFlipGame from "./CardFlipGame";
 
 const newJokeToLaugh: NextBigJoke[] = [
   {
@@ -21,20 +24,36 @@ function App() {
 
   return (
     <AppStyle>
-      <div></div>
-      <StyledTitle>Giggle Click</StyledTitle>
-      <ul>
-        <AppliedTheFavouriteJoke newJokeToLaugh={newJokeToLaugh[0]} />
-        <AppliedTheFavouriteJoke newJokeToLaugh={newJokeToLaugh[1]} />
-      </ul>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <AddJoke />
-        <RateJoke />
-        <NextButton />
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/">Home</Route>
+
+          <Route path="/joke-randomiser" element={<JokeRandomiser />}>
+            Joke Randomiser
+          </Route>
+
+          <Route path="/card-flip-game" element={<CardFlipGame />}>
+            Card Flip Game
+          </Route>
+
+          <Route path="/rate-joke" element={<RateJoke />}>
+            Rate Joke
+          </Route>
+        </Routes>
+        <div></div>
+        <StyledTitle>Giggle Click</StyledTitle>
+        <ul>
+          <AppliedTheFavouriteJoke newJokeToLaugh={newJokeToLaugh[0]} />
+          <AppliedTheFavouriteJoke newJokeToLaugh={newJokeToLaugh[1]} />
+        </ul>
+        <div className="card">
+          <button onClick={() => setCount((count) => count + 1)}>
+            count is {count}
+          </button>
+          <AddJoke />
+          <NextButton />
+        </div>
+      </BrowserRouter>
     </AppStyle>
   );
 }

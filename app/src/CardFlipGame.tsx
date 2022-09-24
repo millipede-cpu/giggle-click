@@ -1,11 +1,14 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import NextButton from "./NextButton";
 
 export default function CardFlipGame() {
   return (
     <>
-      <NextButton />
-      <Title>Card Flip Game</Title>
+      <Link to={"/rate-joke"}>
+        <NextButton />
+      </Link>
+      <Title>Card Flip Game 🃟⤵️🃏</Title>
     </>
   );
 }

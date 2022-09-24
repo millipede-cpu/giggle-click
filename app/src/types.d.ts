@@ -8,6 +8,10 @@ interface NextBigJoke {
   complete: boolean;
 }
 
+interface NextButton {
+  onClick: () => void;
+}
+
 // declare namespace babelPluginMacros {
 //   interface References {
 //     [key: string]: Babel.NodePath[];

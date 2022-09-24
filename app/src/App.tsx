@@ -1,57 +1,36 @@
-import { useState } from "react";
-import { AppliedTheFavouriteJoke } from "./AppliedTheFavouriteJoke";
-import AddJoke from "./AddJoke";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import JokeRandomiser from "./JokeRandomiser";
 import RateJoke from "./RateJoke";
-import styled from "styled-components";
+import CardFlipGame from "./CardFlipGame";
+import Home from "./Home";
 
-const newJokeToLaugh: NextBigJoke[] = [
-  {
-    text: "What do you call a yam with a broom ? A sweep potato.",
-    complete: false,
-  },
-  {
-    text: "Why did the ice cream van break down? Because there was a rocky road!",
-    complete: true,
-  },
-];
-
-function App() {
-  const [count, setCount] = useState(0);
-
+export default function App() {
   return (
-    <AppStyle>
-      <div></div>
-      <StyledTitle>Giggle Click</StyledTitle>
-      <ul>
-        <AppliedTheFavouriteJoke newJokeToLaugh={newJokeToLaugh[0]} />
-        <AppliedTheFavouriteJoke newJokeToLaugh={newJokeToLaugh[1]} />
-      </ul>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <AddJoke />
-        <RateJoke />
-      </div>
-    </AppStyle>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              onClick={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+          }
+        ></Route>
+
+        <Route path="/joke-randomiser" element={<JokeRandomiser />}>
+          Joke Randomiser
+        </Route>
+
+        <Route path="/card-flip-game" element={<CardFlipGame />}>
+          Card Flip Game
+        </Route>
+
+        <Route path="/rate-joke" element={<RateJoke />}>
+          Rate Joke
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
-
-const AppStyle = styled.div`
-  background-color: #add8e6;
-  display: flex;
-  // flex-wrap: nowrap;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100%;
-  height: 100vh;
-`;
-
-const StyledTitle = styled.h1`
-  color: #fd7094;
-`;

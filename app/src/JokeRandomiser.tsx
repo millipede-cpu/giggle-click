@@ -1,11 +1,14 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import NextButton from "./NextButton";
 
 export default function JokeRandomiser() {
   return (
     <>
-      <Title>Joke Randomiser</Title>
-      <NextButton />
+      <Title>Joke Randomiser 🃏🔀</Title>
+      <Link to={"/card-flip-game"}>
+        <NextButton />
+      </Link>
     </>
   );
 }

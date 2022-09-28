@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import AddJoke from "./AddJoke";
 import { AppliedTheFavouriteJoke } from "./AppliedTheFavouriteJoke";
+import JokeList from "./JokeList";
 import NextButton from "./NextButton";
 
 const newJokeToLaugh: NextBigJoke[] = [
@@ -18,6 +19,12 @@ const newJokeToLaugh: NextBigJoke[] = [
 
 export default function Home({ onClick }: { onClick: () => void }) {
   const [count, setCount] = useState(0);
+  // create array state to store joke data
+  const [newJokes, setNewJokes] = useState([]);
+
+  const addJoke = (joke: any) => {
+    setNewJokes([...newJokes], joke);
+  };
   return (
     <>
       <AppStyle>
@@ -33,7 +40,8 @@ export default function Home({ onClick }: { onClick: () => void }) {
           <button onClick={() => setCount((count) => count + 1)}>
             count is {count}
           </button>
-          <AddJoke />
+          <AddJoke addJoke={addJoke} />
+          <JokeList newJokes={newJokes} />
         </div>
       </AppStyle>
     </>

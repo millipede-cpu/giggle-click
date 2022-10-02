@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PJSalter/Testing.git"
@@ -16,14 +19,25 @@
   },
   "homepage": "https://github.com/PJSalter/Testing#readme",
   "devDependencies": {
+    "@babel/core": "^7.19.3",
     "@playwright/test": "^1.25.2",
+    "@storybook/addon-actions": "^6.5.12",
+    "@storybook/addon-essentials": "^6.5.12",
+    "@storybook/addon-interactions": "^6.5.12",
+    "@storybook/addon-links": "^6.5.12",
+    "@storybook/builder-vite": "^0.2.3",
+    "@storybook/react": "^6.5.12",
+    "@storybook/testing-library": "^0.0.13",
+    "babel-loader": "^8.2.5",
     "babel-plugin-styled-components": "^2.0.7"
   },
   "dependencies": {
     "@types/babel-plugin-macros": "^2.8.5",
+    "@types/storybook__react": "^5.2.1",
     "@types/styled-components": "^5.1.26",
     "react-router-dom": "^6.4.1",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "v7": "^1.0.1"
   },
   "resolutions": {
     "styled-components": "^5"

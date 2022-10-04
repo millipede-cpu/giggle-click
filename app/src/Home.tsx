@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import ReactNode, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import AddJoke from "./AddJoke";
@@ -6,7 +6,7 @@ import { AppliedTheFavouriteJoke } from "./AppliedTheFavouriteJoke";
 import JokeList from "./JokeList";
 import NextButton from "./NextButton";
 
-const newJokeToLaugh: NextBigJoke[] = [
+const newJokeToLaugh: Array<Joke> = [
   {
     text: "What do you call a yam with a broom ? A sweep potato.",
     complete: false,
@@ -17,14 +17,34 @@ const newJokeToLaugh: NextBigJoke[] = [
   },
 ];
 
+// const addJoke: AddJoke = (text: string) => {
+//   const newTodo = { text, complete: false };
+//   setTodos([...todos, newTodo]);
+// };
+
 export default function Home({ onClick }: { onClick: () => void }) {
   const [count, setCount] = useState(0);
   // create array state to store joke data
-  const [newJokes, setNewJokes] = useState([]);
+  const [haJokes, setHaJokes] = useState<Array<Joke>>(newJokeToLaugh);
 
-  const addJoke = (joke: any) => {
-    setNewJokes([...newJokes], joke);
+  const toggleJoke: ToggleJoke = (selectedJoke: Joke) => {
+    const newJokes = haJokes.map((joke) => {
+      if (joke === selectedJoke) {
+        return {
+          ...joke,
+          complete: !joke.complete,
+        };
+      }
+      return joke;
+    });
+    setHaJokes(newJokes);
   };
+
+  const addJoke: AddJokes = (newerJoke) => {
+    newerJoke.trim() !== "" &&
+      setHaJokes([...haJokes, { text: newerJoke, complete: false }]);
+  };
+
   return (
     <>
       <AppStyle>
@@ -40,8 +60,12 @@ export default function Home({ onClick }: { onClick: () => void }) {
           <button onClick={() => setCount((count) => count + 1)}>
             count is {count}
           </button>
+          {/* <AddJoke addJoke={addJoke} /> */}
+          <JokeList
+            //  haJokes={haJokes}
+            toggleJoke={toggleJoke}
+          />
           <AddJoke addJoke={addJoke} />
-          <JokeList newJokes={newJokes} />
         </div>
       </AppStyle>
     </>

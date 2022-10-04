@@ -10,7 +10,7 @@ import React from "react";
 // }
 
 interface props {
-  newJokeToLaugh: NextBigJoke;
+  newJokeToLaugh: Joke;
 }
 
 export const AppliedTheFavouriteJoke: React.FC<props> = ({

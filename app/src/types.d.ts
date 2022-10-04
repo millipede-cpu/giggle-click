@@ -3,7 +3,7 @@
 
 // export = babelPluginMacros;
 
-interface NextBigJoke {
+interface Joke {
   text: string;
   complete: boolean;
 }
@@ -12,6 +12,9 @@ interface NextButton {
   onClick: () => void;
 }
 
+type ToggleJoke = (selectedJoke: Jokes) => void;
+
+type AddJokes = (text: string) => void;
 // declare namespace babelPluginMacros {
 //   interface References {
 //     [key: string]: Babel.NodePath[];

@@ -2,11 +2,11 @@
 
 import React, { ChangeEvent, FormEvent, useState } from "react";
 
-interface Props {
-  addJoke: AddJokes;
-}
+// interface Props {
+//   addJoke: typeof AddJoke;
+// }
 
-const AddJoke: React.FC<Props> = ({ addJoke }) => {
+const AddJoke = (addJoke: string) => {
   const [text, setText] = useState<string>("");
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -26,6 +26,7 @@ const AddJoke: React.FC<Props> = ({ addJoke }) => {
       <button type="submit" onClick={handleSubmit}>
         Add Joke
       </button>
+      <span>{text}</span>
     </form>
   );
 };

@@ -1,33 +1,25 @@
 import React from "react";
 
-interface Props {
-  haJokes?: {
-    text: string;
-    complete: boolean;
-  };
-  toggleJoke: ToggleJoke;
-}
-
-interface Jokes {
+interface JokeListProps {
+  haJokes: any;
+  toggleJoke: any;
   text: string;
   complete: boolean;
 }
 
-const JokeList: React.FC<Props> = ({ haJokes, toggleJoke }): any => {
+const JokeList: React.FC<JokeListProps> = (haJokes, toggleJoke) => {
   return (
     <li>
       <label
         style={{
-          textDecoration: haJokes?.complete ? "line-through" : undefined,
+          textDecoration: haJokes.complete ? "line-through" : undefined,
         }}
       >
         <input
           type="checkbox"
-          checked={haJokes?.complete}
-          onClick={() => {
-            toggleJoke(haJokes);
-          }}
-        />{" "}
+          defaultChecked={haJokes?.complete}
+          onClick={() => toggleJoke}
+        />
         {haJokes?.text}
       </label>
     </li>

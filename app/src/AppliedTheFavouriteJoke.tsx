@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // props being added above the component.
 // once the props are declared then the AppliedTheFavouriteJoke will be a functional component. This then passes the props as generic.
@@ -9,12 +9,23 @@ import React from "react";
 //   complete: boolean;
 // }
 
-interface props {
-  newJokeToLaugh: Joke;
+interface ApplyJokeProps {
+  newJokeToLaugh: {
+    text: string;
+    complete: boolean;
+  };
+  toggleJoke: ToggleJoke;
 }
+type Joke = {
+  text: string;
+  complete: boolean;
+};
 
-export const AppliedTheFavouriteJoke: React.FC<props> = ({
+type ToggleJoke = (selectedJoke: Joke) => void;
+
+export const AppliedTheFavouriteJoke: React.FC<ApplyJokeProps> = ({
   newJokeToLaugh,
+  toggleJoke,
 }) => {
   // placing a checkbox in each list item
   // the checkbox will be checked once complete type is true.
@@ -29,8 +40,12 @@ export const AppliedTheFavouriteJoke: React.FC<props> = ({
       >
         Add Joke
       </label>
-      <input type="checkbox" checked={newJokeToLaugh.complete} />
-      {newJokeToLaugh.text}
+      <input
+        type="checkbox"
+        onChange={() => toggleJoke(newJokeToLaugh)}
+        defaultChecked={newJokeToLaugh.complete}
+      />
+      <span style={{ color: "red" }}>{newJokeToLaugh.text}</span>
       {/* HAHAHA THATS HILARIOUS!!! */}
     </li>
   );

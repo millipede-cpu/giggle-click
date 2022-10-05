@@ -74,7 +74,7 @@ export default function Home({ onClick }: { onClick: () => void }) {
               text={""}
               complete={false}
             />
-            <AddJoke addJoke={addJoke} />
+            <AddJoke jokeText={""} />
           </React.Fragment>
         </div>
       </AppStyle>
@@ -98,3 +98,6 @@ const AppStyle = styled.div`
 const StyledTitle = styled.h1`
   color: #fd7094;
 `;
+function useInput() {
+  throw new Error("Function not implemented.");
+}

@@ -1,21 +1,11 @@
-import ReactNode, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import AddJoke from "./AddJoke";
 import { AppliedTheFavouriteJoke } from "./AppliedTheFavouriteJoke";
 import JokeList from "./JokeList";
 import NextButton from "./NextButton";
-
-const newJokeToLaugh: Array<Joke> = [
-  {
-    text: "What do you call a yam with a broom ? A sweep potato.",
-    complete: false,
-  },
-  {
-    text: "Why did the ice cream van break down? Because there was a rocky road!",
-    complete: true,
-  },
-];
 
 // const addJoke: AddJoke = (text: string) => {
 //   const newTodo = { text, complete: false };
@@ -24,10 +14,20 @@ const newJokeToLaugh: Array<Joke> = [
 
 export default function Home({ onClick }: { onClick: () => void }) {
   const [count, setCount] = useState(0);
+  const newJokeToLaugh = [
+    {
+      text: "What do you call a yam with a broom ? A sweep potato.",
+      complete: false,
+    },
+    {
+      text: "Why did the ice cream van break down? Because there was a rocky road!",
+      complete: true,
+    },
+  ];
   // create array state to store joke data
-  const [haJokes, setHaJokes] = useState<Array<Joke>>(newJokeToLaugh);
+  const [haJokes, setHaJokes] = useState(newJokeToLaugh);
 
-  const toggleJoke: ToggleJoke = (selectedJoke: Joke) => {
+  const toggleJoke = (selectedJoke: { text: string; complete: boolean }) => {
     const newJokes = haJokes.map((joke) => {
       if (joke === selectedJoke) {
         return {
@@ -40,7 +40,7 @@ export default function Home({ onClick }: { onClick: () => void }) {
     setHaJokes(newJokes);
   };
 
-  const addJoke: AddJokes = (newerJoke) => {
+  const addJoke = (newerJoke: string) => {
     newerJoke.trim() !== "" &&
       setHaJokes([...haJokes, { text: newerJoke, complete: false }]);
   };
@@ -53,19 +53,29 @@ export default function Home({ onClick }: { onClick: () => void }) {
         </Link>
         <StyledTitle>Giggle Click</StyledTitle>
         <ul>
-          <AppliedTheFavouriteJoke newJokeToLaugh={newJokeToLaugh[0]} />
-          <AppliedTheFavouriteJoke newJokeToLaugh={newJokeToLaugh[1]} />
+          <AppliedTheFavouriteJoke
+            newJokeToLaugh={newJokeToLaugh[0]}
+            toggleJoke={toggleJoke}
+          />
+          <AppliedTheFavouriteJoke
+            newJokeToLaugh={newJokeToLaugh[1]}
+            toggleJoke={toggleJoke}
+          />
         </ul>
         <div className="card">
           <button onClick={() => setCount((count) => count + 1)}>
             count is {count}
           </button>
           {/* <AddJoke addJoke={addJoke} /> */}
-          <JokeList
-            //  haJokes={haJokes}
-            toggleJoke={toggleJoke}
-          />
-          <AddJoke addJoke={addJoke} />
+          <React.Fragment>
+            <JokeList
+              haJokes={haJokes}
+              toggleJoke={toggleJoke}
+              text={""}
+              complete={false}
+            />
+            <AddJoke addJoke={addJoke} />
+          </React.Fragment>
         </div>
       </AppStyle>
     </>

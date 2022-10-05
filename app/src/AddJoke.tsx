@@ -1,38 +1,49 @@
 // export default function AddJoke({ addJoke }: any) {
 
-import React, { ChangeEvent, FormEvent, useState } from "react";
-
-// interface Props {
-//   addJoke: typeof AddJoke;
-// }
-
-const AddJoke = (addJoke: string) => {
-  const [text, setText] = useState<string>("");
+import { ChangeEvent, FormEvent, useState } from "react";
+interface AddJokeProps {
+  jokeText: string;
+}
+const AddJoke: React.FC<AddJokeProps> = ({ jokeText }) => {
+  const inputProps = { text: "" };
+  const [text, setText] = useState<string>(jokeText);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setText(text);
+    // setText(text);
     setText(event.target.value);
   };
 
   const handleSubmit = (event: FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    addJoke(text);
+    // addJoke(text);
     setText("");
   };
 
   return (
-    <form>
-      <input type="text" value={text} onChange={handleChange} />
-      <button type="submit" onClick={handleSubmit}>
-        Add Joke
-      </button>
-      <span>{text}</span>
-    </form>
+    <>
+      <form>
+        <input
+          placeholder="Type something funny"
+          {...inputProps}
+          type="text"
+          value={text}
+          onChange={handleChange}
+        />
+        <button type="submit" onClick={handleSubmit}>
+          Add Joke
+        </button>
+      </form>
+      {handleChange}
+      <span>Joke: {text}</span>
+    </>
   );
 };
 
 export default AddJoke;
 
+function useInput() {
+  throw new Error("Function not implemented.");
+}
 // const [joke, setAddJoke] = useState({ addJoke: "", punchline: "" });
 
 // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

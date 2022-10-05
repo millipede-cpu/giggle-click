@@ -45,7 +45,6 @@ export const AppliedTheFavouriteJoke: React.FC<ApplyJokeProps> = ({
         onChange={() => toggleJoke(newJokeToLaugh)}
         defaultChecked={newJokeToLaugh.complete}
       />
-      <span style={{ color: "red" }}>{newJokeToLaugh.text}</span>
       {/* HAHAHA THATS HILARIOUS!!! */}
     </li>
   );

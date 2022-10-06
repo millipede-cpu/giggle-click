@@ -1,63 +1,72 @@
-// export default function AddJoke({ addJoke }: any) {
-
-import { ChangeEvent, FormEvent, useState } from "react";
+import { useState } from "react";
 interface AddJokeProps {
   joke: string;
   pun: string;
 }
 const AddJoke: React.FC<AddJokeProps> = ({ joke, pun }) => {
-  const inputProps = { text: "" };
   const [jokeFields, setJokeFields] = useState([{ joke: "", pun: "" }]);
 
-  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   // setText(text);
-  //   setJokeFields(event.target.value);
-  // };
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setJokeFields(jokeFields);
+    console.log(event.target.value);
+  };
 
-  // const handleSubmit = (event: FormEvent<HTMLButtonElement>) => {
-  //   event.preventDefault();
-  //   // addJoke(text);
-  //   setJokeFields("");
-  // };
+  const handleSubmit = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    setJokeFields(jokeFields);
+  };
 
-  const addJoke = () => {};
+  const addJoke = () => {
+    let newJoke = { joke: "", pun: "" };
+    setJokeFields([...jokeFields, newJoke]);
+  };
+
+  const removeJokes = (index: number) => {
+    let data = [...jokeFields];
+    data.splice(index, 0);
+    setJokeFields(data);
+  };
 
   return (
-    <form onSubmit={submit}>
-      {jokeFields.map((input, index) => {
+    <form onSubmit={handleSubmit}>
+      {jokeFields.map((_input, index) => {
         return (
           <div key={index}>
             <input
               placeholder="Type something funny"
-              {...inputProps}
               type="text"
-              value={input.joke}
+              value={joke}
               name="joke"
+              onChange={handleChange}
             />
             <input
               placeholder="What's the pun?"
-              {...inputProps}
               type="text"
-              value={input.pun}
+              value={pun}
               name="pun"
+              onChange={handleChange}
             />
           </div>
         );
       })}
 
       <button type="button" onClick={addJoke}>
-        Add Joke
+        Add more joke and pun boxes
+      </button>
+      <button type="submit" onClick={() => handleSubmit}>
+        Submit
       </button>
       <span>Joke: {joke}</span>
+      <span>Pun: {pun}</span>
+      <button type="button" onClick={() => removeJokes}>
+        Remove
+      </button>
     </form>
   );
 };
 
 export default AddJoke;
 
-function useInput() {
-  throw new Error("Function not implemented.");
-}
 // const [joke, setAddJoke] = useState({ addJoke: "", punchline: "" });
 
 // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

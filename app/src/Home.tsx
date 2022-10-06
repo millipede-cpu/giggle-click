@@ -74,7 +74,7 @@ export default function Home({ onClick }: { onClick: () => void }) {
               text={""}
               complete={false}
             />
-            <AddJoke jokeText={""} />
+            <AddJoke joke={""} pun={""} />
           </React.Fragment>
         </div>
       </AppStyle>

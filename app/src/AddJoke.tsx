@@ -2,40 +2,54 @@
 
 import { ChangeEvent, FormEvent, useState } from "react";
 interface AddJokeProps {
-  jokeText: string;
+  joke: string;
+  pun: string;
 }
-const AddJoke: React.FC<AddJokeProps> = ({ jokeText }) => {
+const AddJoke: React.FC<AddJokeProps> = ({ joke, pun }) => {
   const inputProps = { text: "" };
-  const [text, setText] = useState<string>(jokeText);
+  const [jokeFields, setJokeFields] = useState([{ joke: "", pun: "" }]);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    // setText(text);
-    setText(event.target.value);
-  };
+  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   // setText(text);
+  //   setJokeFields(event.target.value);
+  // };
 
-  const handleSubmit = (event: FormEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    // addJoke(text);
-    setText("");
-  };
+  // const handleSubmit = (event: FormEvent<HTMLButtonElement>) => {
+  //   event.preventDefault();
+  //   // addJoke(text);
+  //   setJokeFields("");
+  // };
+
+  const addJoke = () => {};
 
   return (
-    <>
-      <form>
-        <input
-          placeholder="Type something funny"
-          {...inputProps}
-          type="text"
-          value={text}
-          onChange={handleChange}
-        />
-        <button type="submit" onClick={handleSubmit}>
-          Add Joke
-        </button>
-      </form>
-      {handleChange}
-      <span>Joke: {text}</span>
-    </>
+    <form onSubmit={submit}>
+      {jokeFields.map((input, index) => {
+        return (
+          <div key={index}>
+            <input
+              placeholder="Type something funny"
+              {...inputProps}
+              type="text"
+              value={input.joke}
+              name="joke"
+            />
+            <input
+              placeholder="What's the pun?"
+              {...inputProps}
+              type="text"
+              value={input.pun}
+              name="pun"
+            />
+          </div>
+        );
+      })}
+
+      <button type="button" onClick={addJoke}>
+        Add Joke
+      </button>
+      <span>Joke: {joke}</span>
+    </form>
   );
 };
 

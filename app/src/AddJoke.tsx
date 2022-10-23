@@ -1,27 +1,78 @@
-import React, { useState } from "react";
+import { useState, ChangeEvent } from "react";
+import { AppliedTheFavouriteJoke } from "./AppliedTheFavouriteJoke";
+import { IJokes } from "./interfaces";
 
-export default function AddJoke() {
-  const [joke, setAddJoke] = useState("");
-  const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
+interface AddJokeProps {
+  status: string;
+}
+
+export default function AddJoke({ status = "empty" }: AddJokeProps) {
+  const [joke, setJoke] = useState<string>("");
+  const [pun, setPun] = useState<string>("");
+  const [jokeList, setJokeList] = useState<IJokes[]>([]);
+
+  // conditional statement to set status to 'success' if user submits correct answer
+  if (status === "success") {
+    return <h1>That's right!</h1>;
+  }
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault();
-    // alert(joke);
+    if (event.target.name === "joke") {
+      setJoke(event.target.value);
+    } else {
+      setPun(event.target.value);
+    }
+  };
+
+  const addJoke = (): void => {
+    const newJoke = { jokeName: joke, punName: pun };
+    setJokeList([...jokeList, newJoke]);
+    setJoke("");
+  };
+
+  const addPun = (): void => {
+    const newPun = { jokeName: joke, punName: pun };
+    setJokeList([...jokeList, newPun]);
+    setPun("");
+  };
+
+  const handleSubmit = (event: React.SyntheticEvent) => {
+    event.preventDefault();
   };
 
   return (
-    <form onSubmit={submitForm}>
-      <label htmlFor="joke"></label>
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="joke">Add your joke</label>
       <input
-        placeholder="Add a new joke"
-        value={joke}
-        onChange={(e) => setAddJoke(e.target.value)}
+        placeholder="Type something funny"
         type="text"
+        defaultValue={joke}
         id="joke"
         name="joke"
-      ></input>
-      <button type="submit" className="submit-joke">
-        Submit Joke
+        onChange={handleChange}
+      />
+      <label htmlFor="pun">Add your pun</label>
+      <input
+        placeholder="What's the pun?"
+        type="text"
+        id="pun"
+        defaultValue={pun}
+        name="pun"
+        onChange={handleChange}
+      />
+
+      <button type="submit" className="submit-joke" onClick={addJoke}>
+        Add Joke
       </button>
-      <span>{joke}</span>
+      <button type="submit" className="submit-pun" onClick={addPun}>
+        Add Pun
+      </button>
+      <div className="jokeList">
+        {jokeList.map((joke: IJokes, key: number) => {
+          return <AppliedTheFavouriteJoke key={key} joke={joke} />;
+        })}
+      </div>
     </form>
   );
 }

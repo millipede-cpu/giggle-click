@@ -3,14 +3,30 @@
 
 // export = babelPluginMacros;
 
-interface NextBigJoke {
-  text: string;
-  complete: boolean;
-}
+// interface ApplyJoke {
+//   text: string;
+//   complete: boolean;
+//   haJokes?: Jokes;
+// }
 
-interface NextButton {
-  onClick: () => void;
-}
+// interface NextButton {
+//   onClick: () => void;
+// }
+
+// interface Props {
+//   text: string;
+//   complete: boolean;
+//   toggleJoke: ToggleJoke;
+// }
+
+// interface Jokes {
+//   text: string;
+//   complete: boolean;
+// }
+
+// type ToggleJoke = (selectedJoke: Jokes) => void;
+
+// type AddJokes = (text: string) => void;
 
 // declare namespace babelPluginMacros {
 //   interface References {

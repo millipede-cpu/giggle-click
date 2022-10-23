@@ -53,14 +53,11 @@ export default function Home({ onClick }: { onClick: () => void }) {
         </Link>
         <StyledTitle>Giggle Click</StyledTitle>
         <ul>
-          <AppliedTheFavouriteJoke
-            newJokeToLaugh={newJokeToLaugh[0]}
-            toggleJoke={toggleJoke}
-          />
-          <AppliedTheFavouriteJoke
-            newJokeToLaugh={newJokeToLaugh[1]}
-            toggleJoke={toggleJoke}
-          />
+          {/* <div className="jokelist">
+            {jokeList.map(() => {
+              return <AppliedTheFavouriteJoke />;
+            })}
+          </div> */}
         </ul>
         <div className="card">
           <button onClick={() => setCount((count) => count + 1)}>
@@ -74,7 +71,7 @@ export default function Home({ onClick }: { onClick: () => void }) {
               text={""}
               complete={false}
             />
-            <AddJoke joke={""} pun={""} />
+            <AddJoke status={""} />
           </React.Fragment>
         </div>
       </AppStyle>

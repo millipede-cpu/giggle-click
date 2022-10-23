@@ -9,20 +9,21 @@ interface JokeListProps {
 
 const JokeList: React.FC<JokeListProps> = (haJokes, toggleJoke) => {
   return (
-    <li>
-      <label
-        style={{
-          textDecoration: haJokes.complete ? "line-through" : undefined,
-        }}
-      >
-        <input
-          type="checkbox"
-          defaultChecked={haJokes?.complete}
-          onClick={() => toggleJoke}
-        />
-        {haJokes?.text}
-      </label>
-    </li>
+    <div>Nope</div>
+    // <li>
+    //   <label
+    //     style={{
+    //       textDecoration: haJokes.complete ? "line-through" : undefined,
+    //     }}
+    //   >
+    //     <input
+    //       type="checkbox"
+    //       defaultChecked={haJokes?.complete}
+    //       onClick={() => toggleJoke}
+    //     />
+    //     {haJokes?.text}
+    //   </label>
+    // </li>
   );
 };
 export default JokeList;

@@ -62,10 +62,10 @@ export default function AddJoke({ status = "empty" }: AddJokeProps) {
         onChange={handleChange}
       />
 
-      <button type="submit" onClick={addJoke}>
+      <button type="submit" className="submit-joke" onClick={addJoke}>
         Add Joke
       </button>
-      <button type="submit" onClick={addPun}>
+      <button type="submit" className="submit-pun" onClick={addPun}>
         Add Pun
       </button>
       <div className="jokeList">

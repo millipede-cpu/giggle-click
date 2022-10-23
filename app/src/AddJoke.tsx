@@ -1,128 +1,78 @@
-import { useState } from "react";
-interface AddJokeProps {
-  joke: string;
-  pun: string;
-  funnyHAHA: string;
-  answerPun: string;
-}
-const AddJoke: React.FC<AddJokeProps> = ({
-  joke,
-  pun,
-  funnyHAHA,
-  answerPun,
-}) => {
-  const [jokeFields, setJokeFields] = useState([{ joke: "", pun: "" }]);
+import { useState, ChangeEvent } from "react";
+import { AppliedTheFavouriteJoke } from "./AppliedTheFavouriteJoke";
+import { IJokes } from "./interfaces";
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    let jokeCopy = [...funnyHAHA];
-    let punCopy = [...answerPun];
-    jokeCopy[0] = capitalizeFirstLetter(event.target.value);
-    punCopy[1] = capitalizeFirstLetter(event.target.value);
-    setJokeFields(jokeFields);
-    // setJokeFields(punCopy);
-    console.log(event.target.value);
-  };
-  function capitalizeFirstLetter(user: String) {
-    return user.charAt(0).toUpperCase() + user.slice(1);
+interface AddJokeProps {
+  status: string;
+}
+
+export default function AddJoke({ status = "empty" }: AddJokeProps) {
+  const [joke, setJoke] = useState<string>("");
+  const [pun, setPun] = useState<string>("");
+  const [jokeList, setJokeList] = useState<IJokes[]>([]);
+
+  // conditional statement to set status to 'success' if user submits correct answer
+  if (status === "success") {
+    return <h1>That's right!</h1>;
   }
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    event.preventDefault();
+    if (event.target.name === "joke") {
+      setJoke(event.target.value);
+    } else {
+      setPun(event.target.value);
+    }
+  };
+
+  const addJoke = (): void => {
+    const newJoke = { jokeName: joke, punName: pun };
+    setJokeList([...jokeList, newJoke]);
+    setJoke("");
+  };
+
+  const addPun = (): void => {
+    const newPun = { jokeName: joke, punName: pun };
+    setJokeList([...jokeList, newPun]);
+    setPun("");
+  };
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    setJokeFields(jokeFields);
-  };
-
-  const addJoke = () => {
-    let newJoke = { joke: "", pun: "" };
-    setJokeFields([...jokeFields, newJoke]);
-  };
-
-  const removeJokes = (index: number) => {
-    let data = [...jokeFields];
-    data.splice(index, 0);
-    setJokeFields(data);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      {jokeFields.map((_input, index) => {
-        return (
-          <div key={index}>
-            <label htmlFor="joke">Add your joke</label>
-            <input
-              placeholder="Type something funny"
-              type="text"
-              value={joke}
-              id="joke"
-              name="joke"
-              onChange={handleChange}
-              required
-            />
-            <label htmlFor="pun">Add your pun</label>
-            <input
-              placeholder="What's the pun?"
-              type="text"
-              id="pun"
-              value={pun}
-              name="pun"
-              onChange={handleChange}
-              required
-            />
-          </div>
-        );
-      })}
+      <label htmlFor="joke">Add your joke</label>
+      <input
+        placeholder="Type something funny"
+        type="text"
+        defaultValue={joke}
+        id="joke"
+        name="joke"
+        onChange={handleChange}
+      />
+      <label htmlFor="pun">Add your pun</label>
+      <input
+        placeholder="What's the pun?"
+        type="text"
+        id="pun"
+        defaultValue={pun}
+        name="pun"
+        onChange={handleChange}
+      />
 
-      <button type="button" onClick={addJoke}>
-        Add more joke and pun boxes
+      <button type="submit" onClick={addJoke}>
+        Add Joke
       </button>
-      <button type="submit" onClick={() => handleSubmit}>
-        Submit
+      <button type="submit" onClick={addPun}>
+        Add Pun
       </button>
-      <span>Joke: {joke}</span>
-      <span>Pun: {pun}</span>
-      <button type="button" onClick={() => removeJokes}>
-        Remove
-      </button>
+      <div className="jokeList">
+        {jokeList.map((joke: IJokes, key: number) => {
+          return <AppliedTheFavouriteJoke key={key} joke={joke} />;
+        })}
+      </div>
     </form>
   );
-};
-
-export default AddJoke;
-
-// const [joke, setAddJoke] = useState({ addJoke: "", punchline: "" });
-
-// const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-//   setAddJoke({ ...joke, [event.target.name]: event.target.value });
-// };
-
-// const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-//   event.preventDefault();
-//   addJoke(joke);
-//   setAddJoke({ addJoke: "", punchline: "" });
-// };
-
-// return (
-//   <form onSubmit={handleSubmit}>
-//     <label htmlFor="joke"></label>
-//     <input
-//       placeholder="Add a new joke"
-//       value={joke.addJoke}
-//       onChange={handleChange}
-//       type="text"
-//       id="joke"
-//       name="joke"
-//     />
-//     <input
-//       placeholder="Add the punchline"
-//       value={joke.punchline}
-//       onChange={handleChange}
-//       type="text"
-//       id="punchline"
-//       name="punchline"
-//     />
-//     <button onClick={() => joke} className="submit-joke">
-//       Submit Joke
-//     </button>
-//   </form>
-// );
-// }
+}

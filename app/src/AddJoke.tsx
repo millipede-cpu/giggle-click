@@ -2,14 +2,30 @@ import { useState } from "react";
 interface AddJokeProps {
   joke: string;
   pun: string;
+  funnyHAHA: string;
+  answerPun: string;
 }
-const AddJoke: React.FC<AddJokeProps> = ({ joke, pun }) => {
+const AddJoke: React.FC<AddJokeProps> = ({
+  joke,
+  pun,
+  funnyHAHA,
+  answerPun,
+}) => {
   const [jokeFields, setJokeFields] = useState([{ joke: "", pun: "" }]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    let jokeCopy = [...funnyHAHA];
+    let punCopy = [...answerPun];
+    jokeCopy[0] = capitalizeFirstLetter(event.target.value);
+    punCopy[1] = capitalizeFirstLetter(event.target.value);
     setJokeFields(jokeFields);
+    // setJokeFields(punCopy);
     console.log(event.target.value);
   };
+  function capitalizeFirstLetter(user: String) {
+    return user.charAt(0).toUpperCase() + user.slice(1);
+  }
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -32,19 +48,25 @@ const AddJoke: React.FC<AddJokeProps> = ({ joke, pun }) => {
       {jokeFields.map((_input, index) => {
         return (
           <div key={index}>
+            <label htmlFor="joke">Add your joke</label>
             <input
               placeholder="Type something funny"
               type="text"
               value={joke}
+              id="joke"
               name="joke"
               onChange={handleChange}
+              required
             />
+            <label htmlFor="pun">Add your pun</label>
             <input
               placeholder="What's the pun?"
               type="text"
+              id="pun"
               value={pun}
               name="pun"
               onChange={handleChange}
+              required
             />
           </div>
         );

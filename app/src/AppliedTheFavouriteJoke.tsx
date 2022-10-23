@@ -11,7 +11,7 @@ export const AppliedTheFavouriteJoke = ({ joke }: Props) => {
   // This will have a label with the text of the joke.
   return (
     <>
-      <div>
+      <div className="showJokePun">
         {joke.jokeName} {joke.punName}
       </div>
     </>

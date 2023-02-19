@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import AddJoke from "./AddJoke";
 import { AppliedTheFavouriteJoke } from "./AppliedTheFavouriteJoke";
+import BackButton from "./BackButton";
 import JokeList from "./JokeList";
 import NextButton from "./NextButton";
 
@@ -50,6 +51,9 @@ export default function Home({ onClick }: { onClick: () => void }) {
       <AppStyle>
         <Link to={"/joke-randomiser"}>
           <NextButton {...onClick} />
+        </Link>
+        <Link to={"/joke-fetch"}>
+          <BackButton />
         </Link>
         <StyledTitle>Giggle Click</StyledTitle>
         <ul>

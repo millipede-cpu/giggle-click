@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import BackButton from "./BackButton";
 import NextButton from "./NextButton";
 
 export default function CardFlipGame() {
@@ -7,6 +8,9 @@ export default function CardFlipGame() {
     <>
       <Link to={"/rate-joke"}>
         <NextButton />
+      </Link>
+      <Link to={"/joke-randomiser"}>
+        <BackButton />
       </Link>
       <Title>Card Flip Game 🃟⤵️🃏</Title>
     </>

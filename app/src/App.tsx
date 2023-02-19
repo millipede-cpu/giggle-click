@@ -32,7 +32,7 @@ export default function App() {
           Rate Joke
         </Route>
 
-        <Route path="/joke-fetch" element={<JokeFetch jokeRandom={""} />}>
+        <Route path="/joke-fetch" element={<JokeFetch />}>
           Joke Fetch
         </Route>
       </Routes>

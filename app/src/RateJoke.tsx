@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import BackButton from "./BackButton";
 import NextButton from "./NextButton";
 
 export default function RateJoke() {
@@ -8,8 +9,11 @@ export default function RateJoke() {
 
   return (
     <>
-      <Link to={"/"}>
+      <Link to={"/joke-fetch"}>
         <NextButton />
+      </Link>
+      <Link to={"/card-flip-game"}>
+        <BackButton />
       </Link>
       <h1>Rate Joke 👍🏼🎭👎🏼</h1>
       <button className="happy-click" onClick={() => setHappy(!happy)}>

@@ -3,6 +3,7 @@ import JokeRandomiser from "./JokeRandomiser";
 import RateJoke from "./RateJoke";
 import CardFlipGame from "./CardFlipGame";
 import Home from "./Home";
+import JokeFetch from "./JokeFetch";
 
 export default function App() {
   return (
@@ -29,6 +30,10 @@ export default function App() {
 
         <Route path="/rate-joke" element={<RateJoke />}>
           Rate Joke
+        </Route>
+
+        <Route path="/joke-fetch" element={<JokeFetch />}>
+          Joke Fetch
         </Route>
       </Routes>
     </BrowserRouter>

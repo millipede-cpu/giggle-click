@@ -1,8 +1,15 @@
 # Giggle Click
 
 ## Designed and Developed by:
+
 - [Peter](https://github.com/PJSalter)
 - [Milly](https://github.com/millipede-cpu)
+
+## Getting started
+
+- `npm install` in the root directory
+- `cd app` and `npm run dev` to start the local host server
+- `npx playwright test` for playwright tests
 
 # About the App:
 
@@ -14,9 +21,9 @@
 - User will be able to delete joke or edit when needed.
 
 ## TDD Testing with Playwright 🎭
+
 ## 📚 Storybook to Build UI components and pages.
 
 ![laugh](https://user-images.githubusercontent.com/45575016/190519190-7bfc56a5-c0fa-4687-bdba-14f2c605cb3a.gif)
 
-
-# Have a Giggly bubbly fun time 
+# Have a Giggly bubbly fun time

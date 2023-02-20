@@ -5,7 +5,7 @@ export default function NextButton(): JSX.Element {
 
   return (
     <button className="next-button" onClick={() => navigate(1)}>
-      Click for giggles 🤡🤡🤡
+      Next 🤡🤡🤡
     </button>
   );
 }

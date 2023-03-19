@@ -45,7 +45,19 @@ const JokeFetch = () => {
 
   return (
     <>
-      <Title>Dad Jokes 🤹🏻‍♂️</Title>
+      <Title>
+        <span>D</span>
+        <span>a</span>
+        <span>d</span>
+        <br></br>
+        <span>J</span>
+        <span>o</span>
+        <span>k</span>
+        <span>e</span>
+        <span>s</span>
+        <br></br>
+        <span>🤹🏻‍♂️</span>
+      </Title>
       <div>
         {joke === "" ? (
           <button onClick={handleClick}>Get a Joke</button>
@@ -76,6 +88,11 @@ const JokeFetch = () => {
 export default JokeFetch;
 
 const Title = styled.h1`
-  font-size: 3rem;
-  color: #f79d44;
+  // font-size: 3rem;
+  // color: #f79d44;
+  // margin-left: auto;
+  // margin-right: auto;
+  // max-width: 20rem;
+  width: 100vw;
+  text-align: center;
 `;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import BackButton from "./BackButton";
 import NextButton from "./NextButton";
 
@@ -45,17 +45,17 @@ const JokeFetch = () => {
 
   return (
     <>
-      <Title>
+      <Title className="jokeWrapper">
         <span>D</span>
         <span>a</span>
         <span>d</span>
-        <br></br>
+        {/* <br></br> */}
         <span>J</span>
         <span>o</span>
         <span>k</span>
         <span>e</span>
         <span>s</span>
-        <br></br>
+        {/* <br></br> */}
         <span>🤹🏻‍♂️</span>
       </Title>
       <div>
@@ -87,12 +87,81 @@ const JokeFetch = () => {
 
 export default JokeFetch;
 
-const Title = styled.h1`
-  // font-size: 3rem;
-  // color: #f79d44;
-  // margin-left: auto;
-  // margin-right: auto;
-  // max-width: 20rem;
+// const AVATAR_SIZE = "4.063rem";
+// const SHADOW_SIZE = "6rem";
+// const SHADOW_TOP = "8rem";
+// const SHADOW_LEFT = "2rem";
+// // const DURATION = "0.5s";
+// const DURATION = "1s";
+// const SHADOW_HEIGHT = `${Math.round(15 / 30)}rem`;
+// const DROP_HEIGHT = "2rem";
+// const OFFSET = "0rem";
+
+const DURATION = "6s";
+
+const jump = keyframes`
+  33% {
+    text-shadow: 0 60px #f37121, 0 150px #f2aaaa;
+ }
+  50% {
+    transform: translate(0, 0) rotate(-4deg);
+    text-shadow: 0 0px #8fc0a9, 0 0px #84a9ac;
+ }
+  66.67% {
+    text-shadow: 0 -60px #d54062, 0 -150px #8fc0a9;
+ }
+`;
+
+const Title = styled.div`
+  font-size: 3rem;
+  color: purple;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 60rem;
   width: 100vw;
   text-align: center;
+  padding: 5rem;
+
+  span {
+    -webkit-text-stroke-width: 1.25px;
+    -webkit-text-stroke-color: #000;
+    font-size: 100px;
+    text-shadow: 0 0px #f3c623, 0 0px #f2aaaa;
+    transform: translate(0, 100%) rotate(4deg);
+    display: inline-block;
+    font-family: "Titan One", cursive;
+    color: #fff;
+    animation-name: ${jump};
+    animation-duration: ${DURATION};
+    animation-direction: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+  span:nth-child(1) {
+    animation-delay: 120ms;
+  }
+  span:nth-child(2) {
+    animation-delay: 240ms;
+  }
+  span:nth-child(3) {
+    animation-delay: 360ms;
+  }
+  span:nth-child(4) {
+    animation-delay: 480ms;
+  }
+  span:nth-child(5) {
+    animation-delay: 600ms;
+  }
+  span:nth-child(6) {
+    animation-delay: 720ms;
+  }
+  span:nth-child(7) {
+    animation-delay: 840ms;
+  }
+  span:nth-child(8) {
+    animation-delay: 860ms;
+  }
+  span:nth-child(9) {
+    animation-delay: 900ms;
+  }
 `;

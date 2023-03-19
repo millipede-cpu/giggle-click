@@ -87,16 +87,6 @@ const JokeFetch = () => {
 
 export default JokeFetch;
 
-// const AVATAR_SIZE = "4.063rem";
-// const SHADOW_SIZE = "6rem";
-// const SHADOW_TOP = "8rem";
-// const SHADOW_LEFT = "2rem";
-// // const DURATION = "0.5s";
-// const DURATION = "1s";
-// const SHADOW_HEIGHT = `${Math.round(15 / 30)}rem`;
-// const DROP_HEIGHT = "2rem";
-// const OFFSET = "0rem";
-
 const DURATION = "6s";
 
 const jump = keyframes`

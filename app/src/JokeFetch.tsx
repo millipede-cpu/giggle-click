@@ -119,7 +119,9 @@ const Title = styled.div`
     text-shadow: 0 0px #f3c623, 0 0px #f2aaaa;
     transform: translate(0, 100%) rotate(4deg);
     display: inline-block;
-    font-family: "Titan One", cursive;
+    // font-family: "Titan One", cursive;
+    // font-family: "Source Sans Pro", sans-serif;
+    font-family: "Capriola", sans-serif;
     color: #fff;
     animation-name: ${jump};
     animation-duration: ${DURATION};
@@ -138,6 +140,7 @@ const Title = styled.div`
   }
   span:nth-child(4) {
     animation-delay: 480ms;
+    margin-left: 2rem;
   }
   span:nth-child(5) {
     animation-delay: 600ms;

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import BackButton from "./BackButton";
 import NextButton from "./NextButton";
-// import { Button } from "../../stories/Button";
+import { Button } from "../../stories/Button";
 
 const buttonText = [
   "Ugh.",
@@ -61,16 +61,14 @@ const JokeFetch = () => {
       </Title>
       <div>
         {joke === "" ? (
-          // <Button
-          //   onClick={handleClick}
-          //   primary={false}
-          //   backgroundColor={"pink"}
-          //   size={"large"}
-          //   label={"Get a Joke"}
-          //   style={undefined}
-          // />
-           <button
+          <Button
             onClick={handleClick}
+            primary={false}
+            backgroundColor={"pink"}
+            size={"large"}
+            label={"Get a Joke"}
+            style={undefined}
+          />
         ) : (
           <p>Dad Jokes: {joke}</p>
         )}

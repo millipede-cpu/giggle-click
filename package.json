@@ -30,7 +30,8 @@
     "@storybook/react": "^6.5.12",
     "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^8.2.5",
-    "babel-plugin-styled-components": "^2.0.7"
+    "babel-plugin-styled-components": "^2.0.7",
+    "vite-plugin-fonts": "^0.7.0"
   },
   "dependencies": {
     "@types/babel-plugin-macros": "^2.8.5",

@@ -35,7 +35,6 @@
   "dependencies": {
     "@types/babel-plugin-macros": "^2.8.5",
     "@types/storybook__react": "^5.2.1",
-    "@types/styled-components": "^5.1.26",
     "react-is": "^18.2.0",
     "react-router-dom": "^6.4.1",
     "styled-components": "^5.3.5",

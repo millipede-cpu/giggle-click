@@ -62,42 +62,45 @@ function JokeFetch(): JSX.Element {
   const jokeTitle = ["D", "a", "d", "J", "o", "k", "e", "s", "🤹🏻‍♂️"];
 
   return (
-    <>
+    <Container>
       <Title>
         {jokeTitle.map((letter, index) => (
           <span key={index}>{letter}</span>
         ))}
       </Title>
-      <div>
-        {joke === "" ? (
-          <Button
-            onClick={handleClick}
-            primary={false}
-            backgroundColor={"pink"}
-            size={"large"}
-            label={"Get a Joke"}
-          />
-        ) : (
-          <p>Dad Jokes: {joke}</p>
-        )}
-      </div>
-      <button onClick={() => setToggle(!toggle)}>Show me the giggles</button>
-      {toggle && <span>🙈😂🙉</span>}
-      <p>{currentReview}</p>
-      <button
+      <TextBox style={{ marginTop: "10rem" }}>
+        <Button
+          onClick={handleClick}
+          primary={false}
+          backgroundColor={"rgb(252, 163, 249)"}
+          size={"large"}
+          label={"Get a Joke"}
+        />
+
+        <JokeBox>{joke}</JokeBox>
+      </TextBox>
+      <Button
+        onClick={() => setToggle(!toggle)}
+        backgroundColor={"rgb(252, 163, 249)"}
+        label={"Show me the giggles"}
+      />
+      {toggle && <JokeBox>🙈😂🙉</JokeBox>}
+      <JokeBox>{currentReview}</JokeBox>
+      <Button
         onClick={() => setIndex(Math.floor(Math.random() * buttonText.length))}
-      >
-        Joke Review
-      </button>
+        backgroundColor={"rgb(252, 163, 249)"}
+        label={"Joke Review"}
+      />
+      <JokeBox>
+        <Link to={"/"}>
+          <NextButton />
+        </Link>
 
-      <Link to={"/"}>
-        <NextButton />
-      </Link>
-
-      <Link to={"/rate-joke"}>
-        <BackButton />
-      </Link>
-    </>
+        <Link to={"/rate-joke"}>
+          <BackButton />
+        </Link>
+      </JokeBox>
+    </Container>
   );
 }
 
@@ -107,36 +110,40 @@ const DURATION = "6s";
 
 const jump = keyframes`
   33% {
-    text-shadow: 0 60px #f37121, 0 150px #f2aaaa;
+    text-shadow: 0 60px #f37121, 0 100px #f2aaaa;
  }
   50% {
     transform: translate(0, 0) rotate(-4deg);
     text-shadow: 0 0px #8fc0a9, 0 0px #84a9ac;
  }
   66.67% {
-    text-shadow: 0 -60px #d54062, 0 -150px #8fc0a9;
+    text-shadow: 0 -60px #d54062, 0 -100px #8fc0a9;
  }
 `;
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #ffd574;
+  height: 100vh;
+  width: 100%;
+`;
+
 const Title = styled.div`
-  font-size: 3rem;
   color: purple;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 60rem;
-  width: 100vw;
+  margin: 0 auto;
+  max-width: 50rem;
   text-align: center;
-  padding: 5rem;
 
   span {
     -webkit-text-stroke-width: 1.25px;
     -webkit-text-stroke-color: #000;
-    font-size: 100px;
+    font-size: 4rem;
     text-shadow: 0 0px #f3c623, 0 0px #f2aaaa;
     transform: translate(0, 100%) rotate(4deg);
     display: inline-block;
-    // font-family: "Titan One", cursive;
-    // font-family: "Source Sans Pro", sans-serif;
     font-family: "Capriola", sans-serif;
     color: #fff;
     animation-name: ${jump};
@@ -173,4 +180,21 @@ const Title = styled.div`
   span:nth-child(9) {
     animation-delay: 900ms;
   }
+`;
+
+const TextBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+`;
+
+const JokeBox = styled.p`
+  font-family: "Capriola", sans-serif;
+  font-weight: 400;
+  margin: 0 auto;
+  padding: 2rem;
 `;

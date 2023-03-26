@@ -5,7 +5,18 @@ import BackButton from "./BackButton";
 import NextButton from "./NextButton";
 import { Button } from "../../stories/Button";
 
-const buttonText = [
+/** Define a type for the Joke object */
+interface Joke {
+  joke: string;
+}
+
+/** Define a type for the array of possible review text */
+type ReviewText = string[];
+
+/** Define a type for index state */
+type IndexState = number;
+
+const buttonText: ReviewText = [
   "Ugh.",
   "🤦🏻‍♂️",
   "omg dad.",
@@ -16,26 +27,29 @@ const buttonText = [
   "that was the worst one",
 ];
 
-const JokeFetch = () => {
-  /* Render json from fetchJoke()
-     when handleClick() event fires */
-  const [joke, setJoke] = useState("");
-  /* Toggle button with boolean values  */
-  const [toggle, setToggle] = useState(false);
-  /* Randomise array string value "Joke Review"
-     onClick button event fires */
-  const [index, setIndex] = useState(-1);
+function JokeFetch(): JSX.Element {
+  // Declare state types with hooks
 
-  const startName = [""];
-  const randomJokeReview = index !== -1 ? buttonText[index] : startName[0];
+  // Render json from fetchJoke() when handleClick() event fires
+  const [joke, setJoke] = useState<string>("");
+  // Toggle button with boolean values
+  const [toggle, setToggle] = useState<boolean>(false);
+  // Randomise array string value "Joke Review" onClick button event fires
+  const [index, setIndex] = useState<IndexState>(-1);
 
-  async function fetchJoke() {
+  // Declare a constant with type for starting name string
+  const startName: string[] = [""];
+  // Define the current review text space on the current index
+  const currentReview: string = index !== -1 ? buttonText[index] : startName[0];
+
+  // Declare an async function to fetch the joke
+  async function fetchJoke(): Promise<Joke> {
     const response = await fetch("https://icanhazdadjoke.com", {
       headers: {
         Accept: "application/json",
       },
     });
-    const data = response.json();
+    const data = response.json() as Promise<Joke>;
     return data;
   }
 
@@ -75,7 +89,7 @@ const JokeFetch = () => {
       </div>
       <button onClick={() => setToggle(!toggle)}>Show me the giggles</button>
       {toggle && <span>🙈😂🙉</span>}
-      <p>{randomJokeReview}</p>
+      <p>{currentReview}</p>
       <button
         onClick={() => setIndex(Math.floor(Math.random() * buttonText.length))}
       >
@@ -91,7 +105,7 @@ const JokeFetch = () => {
       </Link>
     </>
   );
-};
+}
 
 export default JokeFetch;
 

@@ -76,7 +76,6 @@ function JokeFetch(): JSX.Element {
             backgroundColor={"pink"}
             size={"large"}
             label={"Get a Joke"}
-            style={undefined}
           />
         ) : (
           <p>Dad Jokes: {joke}</p>

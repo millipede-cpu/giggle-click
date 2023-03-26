@@ -1,12 +1,20 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { AppliedTheFavouriteJoke } from "./AppliedTheFavouriteJoke";
 import { IJokes } from "./interfaces";
 
+// Add types for the props object
 interface AddJokeProps {
   status: string;
 }
 
-export default function AddJoke({ status = "empty" }: AddJokeProps) {
+interface InputEvent extends ChangeEvent<HTMLInputElement> {
+  target: HTMLInputElement;
+}
+
+export default function AddJoke({
+  status = "empty",
+}: AddJokeProps): JSX.Element {
+  // Add type annotations for the state variables
   const [joke, setJoke] = useState<string>("");
   const [pun, setPun] = useState<string>("");
   const [jokeList, setJokeList] = useState<IJokes[]>([]);
@@ -16,7 +24,8 @@ export default function AddJoke({ status = "empty" }: AddJokeProps) {
     return <h1>That's right!</h1>;
   }
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  // Add a type annotation for the event object
+  const handleChange = (event: InputEvent): void => {
     event.preventDefault();
     if (event.target.name === "joke") {
       setJoke(event.target.value);
@@ -25,19 +34,22 @@ export default function AddJoke({ status = "empty" }: AddJokeProps) {
     }
   };
 
+  // Add return type for the function
   const addJoke = (): void => {
-    const newJoke = { jokeName: joke, punName: pun };
+    const newJoke: IJokes = { jokeName: joke, punName: pun };
     setJokeList([...jokeList, newJoke]);
     setJoke("");
   };
 
+  // Add return type for the function
   const addPun = (): void => {
-    const newPun = { jokeName: joke, punName: pun };
+    const newPun: IJokes = { jokeName: joke, punName: pun };
     setJokeList([...jokeList, newPun]);
     setPun("");
   };
 
-  const handleSubmit = (event: React.SyntheticEvent) => {
+  // Add type annotation for the event object.
+  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
   };
 
@@ -47,7 +59,7 @@ export default function AddJoke({ status = "empty" }: AddJokeProps) {
       <input
         placeholder="Type something funny"
         type="text"
-        defaultValue={joke}
+        defaultValue={joke} // Use value instead of defaultValue
         id="joke"
         name="joke"
         onChange={handleChange}
@@ -57,7 +69,7 @@ export default function AddJoke({ status = "empty" }: AddJokeProps) {
         placeholder="What's the pun?"
         type="text"
         id="pun"
-        defaultValue={pun}
+        defaultValue={pun} // Use value instead of defaultValue
         name="pun"
         onChange={handleChange}
       />
@@ -69,9 +81,11 @@ export default function AddJoke({ status = "empty" }: AddJokeProps) {
         Add Pun
       </button>
       <div className="jokeList">
-        {jokeList.map((joke: IJokes, key: number) => {
-          return <AppliedTheFavouriteJoke key={key} joke={joke} />;
-        })}
+        {jokeList.map(
+          (joke: IJokes, key: number): JSX.Element => (
+            <AppliedTheFavouriteJoke key={key} joke={joke} />
+          )
+        )}
       </div>
     </form>
   );

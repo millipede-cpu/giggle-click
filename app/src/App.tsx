@@ -5,36 +5,54 @@ import CardFlipGame from "./CardFlipGame";
 import Home from "./Home";
 import JokeFetch from "./JokeFetch";
 
-export default function App() {
+interface AppRoute {
+  path: string;
+  component: JSX.Element;
+  label?: string;
+}
+
+const appRoutes: AppRoute[] = [
+  {
+    path: "/",
+    component: (
+      <Home
+        onClick={() => {
+          throw new Error("Function not implemented.");
+        }}
+      />
+    ),
+  },
+  {
+    path: "/joke-randomiser",
+    component: <JokeRandomiser />,
+    label: "Joke Randomiser",
+  },
+  {
+    path: "/card-flip-game",
+    component: <CardFlipGame />,
+    label: "Card Flip Game",
+  },
+  {
+    path: "/rate-joke",
+    component: <RateJoke />,
+    label: "Rate Joke",
+  },
+  {
+    path: "/joke-fetch",
+    component: <JokeFetch />,
+    label: "Joke Fetch",
+  },
+];
+
+export default function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              onClick={function (): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
-          }
-        ></Route>
-
-        <Route path="/joke-randomiser" element={<JokeRandomiser />}>
-          Joke Randomiser
-        </Route>
-
-        <Route path="/card-flip-game" element={<CardFlipGame />}>
-          Card Flip Game
-        </Route>
-
-        <Route path="/rate-joke" element={<RateJoke />}>
-          Rate Joke
-        </Route>
-
-        <Route path="/joke-fetch" element={<JokeFetch />}>
-          Joke Fetch
-        </Route>
+        {appRoutes.map((route) => (
+          <Route key={route.path} path={route.path} element={route.component}>
+            {route.label}
+          </Route>
+        ))}
       </Routes>
     </BrowserRouter>
   );

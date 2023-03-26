@@ -5454,7 +5454,7 @@ fast-glob@^2.2.6:
     merge2 "^1.2.3"
     micromatch "^3.1.10"
 
-fast-glob@^3.2.9:
+fast-glob@^3.2.11, fast-glob@^3.2.9:
   version "3.2.12"
   resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.2.12.tgz#7f39ec99c2e6ab030337142da9e0c18f37afae80"
   integrity sha512-DVj4CQIYYow0BlaelwK1pHl5n5cRSJfM60UA0zK891sVInoPri2Ekj7+e1CT3/3qxXenpI+nBBmQAcJPJgaj4w==
@@ -10407,6 +10407,13 @@ vfile@^4.0.0:
     is-buffer "^2.0.0"
     unist-util-stringify-position "^2.0.0"
     vfile-message "^2.0.0"
+
+vite-plugin-fonts@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/vite-plugin-fonts/-/vite-plugin-fonts-0.7.0.tgz#e7fb971cf77a35cd027b9d9e5caa77c2227cbecb"
+  integrity sha512-fisKirkQrA2RFwcyI96SENLu1FyRYNIiC/l5DGdD8oV3OsAWGrYKs0e7/VZF6l0rm0QiYA2sOVTzYfrLAzP9cw==
+  dependencies:
+    fast-glob "^3.2.11"
 
 vite@^4.2.0:
   version "4.2.0"

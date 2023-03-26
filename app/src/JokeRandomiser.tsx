@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import BackButton from "./BackButton";
 import NextButton from "./NextButton";
@@ -7,12 +6,8 @@ export default function JokeRandomiser() {
   return (
     <PageStyle>
       <Title>Joke Randomiser 🃏🔀</Title>
-      <Link to={"/card-flip-game"}>
-        <NextButton />
-      </Link>
-      <Link to={"/joke-randomiser"}>
-        <BackButton />
-      </Link>
+      <NextButton to={"/card-flip-game"} />
+      <BackButton to={"/"} />
     </PageStyle>
   );
 }

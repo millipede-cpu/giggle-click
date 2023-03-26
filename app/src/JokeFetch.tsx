@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import BackButton from "./BackButton";
 import NextButton from "./NextButton";
 import { Button } from "../../stories/Button";
 
-/** Define a type for the Joke object */
+// Define a type for the Joke object
 interface Joke {
   joke: string;
 }
 
-/** Define a type for the array of possible review text */
+// Define a type for the array of possible review text
 type ReviewText = string[];
 
-/** Define a type for index state */
+// Define a type for index state
 type IndexState = number;
 
 const buttonText: ReviewText = [
@@ -53,25 +53,20 @@ function JokeFetch(): JSX.Element {
     return data;
   }
 
-  async function handleClick() {
+  // Declare a function to handle the button click event
+  async function handleClick(): Promise<void> {
     const { joke } = await fetchJoke();
     setJoke(joke);
   }
 
+  const jokeTitle = ["D", "a", "d", "J", "o", "k", "e", "s", "🤹🏻‍♂️"];
+
   return (
     <>
-      <Title className="jokeWrapper">
-        <span>D</span>
-        <span>a</span>
-        <span>d</span>
-        {/* <br></br> */}
-        <span>J</span>
-        <span>o</span>
-        <span>k</span>
-        <span>e</span>
-        <span>s</span>
-        {/* <br></br> */}
-        <span>🤹🏻‍♂️</span>
+      <Title>
+        {jokeTitle.map((letter, index) => (
+          <span key={index}>{letter}</span>
+        ))}
       </Title>
       <div>
         {joke === "" ? (

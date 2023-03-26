@@ -1,11 +1,15 @@
 import { useNavigate } from "react-router-dom";
 
-export default function NextButton(): JSX.Element {
+interface Props {
+  to: string;
+}
+
+export default function BackButtonWrapper({ to }: Props): JSX.Element {
   const navigate = useNavigate();
 
-  return (
-    <button className="next-button" onClick={() => navigate(1)}>
-      Next 🤡🤡🤡
-    </button>
-  );
+  const handleNext = () => {
+    navigate(to);
+  };
+
+  return <button onClick={handleNext}>Next 🤡🤡🤡</button>;
 }

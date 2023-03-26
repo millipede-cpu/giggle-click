@@ -1,21 +1,21 @@
-import React from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import styled from "styled-components";
 import AddJoke from "./AddJoke";
-import { AppliedTheFavouriteJoke } from "./AppliedTheFavouriteJoke";
 import BackButton from "./BackButton";
-import JokeList from "./JokeList";
 import NextButton from "./NextButton";
 
-// const addJoke: AddJoke = (text: string) => {
-//   const newTodo = { text, complete: false };
-//   setTodos([...todos, newTodo]);
-// };
+interface Joke {
+  text: string;
+  complete: boolean;
+}
 
-export default function Home({ onClick }: { onClick: () => void }) {
-  const [count, setCount] = useState(0);
-  const newJokeToLaugh = [
+interface HomeProps {
+  onClick: () => void;
+}
+
+export default function Home({ onClick }: HomeProps): JSX.Element {
+  const [count, setCount] = useState<number>(0);
+  const newJokeToLaugh: Joke[] = [
     {
       text: "What do you call a yam with a broom ? A sweep potato.",
       complete: false,
@@ -25,10 +25,9 @@ export default function Home({ onClick }: { onClick: () => void }) {
       complete: true,
     },
   ];
-  // create array state to store joke data
-  const [haJokes, setHaJokes] = useState(newJokeToLaugh);
+  const [haJokes, setHaJokes] = useState<Joke[]>(newJokeToLaugh);
 
-  const toggleJoke = (selectedJoke: { text: string; complete: boolean }) => {
+  const toggleJoke = (selectedJoke: Joke) => {
     const newJokes = haJokes.map((joke) => {
       if (joke === selectedJoke) {
         return {
@@ -41,40 +40,35 @@ export default function Home({ onClick }: { onClick: () => void }) {
     setHaJokes(newJokes);
   };
 
-  const addJoke = (newerJoke: string) => {
-    newerJoke.trim() !== "" &&
-      setHaJokes([...haJokes, { text: newerJoke, complete: false }]);
-  };
-
   return (
     <>
       <AppStyle>
-        <Link to={"/joke-randomiser"}>
-          <NextButton {...onClick} />
-        </Link>
-        <Link to={"/joke-fetch"}>
-          <BackButton />
-        </Link>
+        <NextButton to={"/joke-randomiser"} />
+        <BackButton to={"/joke-fetch"} />
         <StyledTitle>Giggle Click</StyledTitle>
-        <ul>
-          {/* <div className="jokelist">
-            {jokeList.map(() => {
-              return <AppliedTheFavouriteJoke />;
-            })}
-          </div> */}
-        </ul>
+        {/* <ul>
+          {haJokes.map((joke) => (
+            <li key={joke.text}> */}
+        {/* <label
+                style={{
+                  textDecoration: joke.complete ? "line-through" : undefined,
+                }}
+              >
+                {/* <input
+                  type="checkbox"
+                  defaultChecked={joke.complete}
+                  onClick={() => toggleJoke(joke)}
+                /> }
+                {joke.text}
+              // </label>
+            // </li> */}
+        {/* ))} */}
+        {/* </ul> */}
         <div className="card">
           <button onClick={() => setCount((count) => count + 1)}>
             count is {count}
           </button>
-          {/* <AddJoke addJoke={addJoke} /> */}
           <React.Fragment>
-            <JokeList
-              haJokes={haJokes}
-              toggleJoke={toggleJoke}
-              text={""}
-              complete={false}
-            />
             <AddJoke status={""} />
           </React.Fragment>
         </div>
@@ -86,7 +80,6 @@ export default function Home({ onClick }: { onClick: () => void }) {
 const AppStyle = styled.div`
   background-color: #add8e6;
   display: flex;
-  // flex-wrap: nowrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -99,6 +92,3 @@ const AppStyle = styled.div`
 const StyledTitle = styled.h1`
   color: #fd7094;
 `;
-function useInput() {
-  throw new Error("Function not implemented.");
-}

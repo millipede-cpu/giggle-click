@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import BackButton from "./BackButton";
 import NextButton from "./NextButton";
@@ -92,13 +91,8 @@ function JokeFetch(): JSX.Element {
         label={"Joke Review"}
       />
       <JokeBox>
-        <Link to={"/"}>
-          <NextButton />
-        </Link>
-
-        <Link to={"/rate-joke"}>
-          <BackButton />
-        </Link>
+      <NextButton to={"/"} />
+      <BackButton to={"/rate-joke"} />
       </JokeBox>
     </Container>
   );

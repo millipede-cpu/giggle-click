@@ -32,3 +32,7 @@ const Title = styled.h1`
 `;
 
 export default CardFlipGame;
+
+// wrapped the code that could potentially throw an error in a try block. If an error is thrown, execution will jump to the catch block, where you can handle the error in whatever way you see fit.
+
+// In the catch block, I've simply logged the error to the console and returned a simple error message.

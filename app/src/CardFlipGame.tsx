@@ -17,7 +17,12 @@ const CardFlipGame: Props = (): JSX.Element => {
   } catch (error) {
     // Your error handling code goes here
     console.error("An error occurred:", error);
-    return <p>Sorry, something went wrong.</p>;
+    return (
+      <p>
+        😱😱😱😱😱😱😱😱😱😱😱😱 Sorry, something went wrong. Theres no flip
+        game for us today NOOOOOOO!!!!!!! 😲😲😲😲😲😲😲😲
+      </p>
+    );
   }
 };
 

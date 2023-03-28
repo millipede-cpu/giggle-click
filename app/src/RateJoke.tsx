@@ -52,3 +52,8 @@ export default function RateJoke() {
     return <p>Oh dear an error occured, no Ratings for us today</p>;
   }
 }
+
+// We wrapped the code that might throw an error in a try block. This includes the JSX code that generates the UI, as well as the onClick handlers that update the component's state.
+// If an error is thrown anywhere in the try block, execution will jump to the catch block.
+// In the catch block, we log the error to the console using console.error, and return a simple error message to the UI.
+// By adding this error handling, we're making our code more robust and defensive. If something unexpected happens during the execution of the component, we'll be able to handle it gracefully and provide feedback to the user.

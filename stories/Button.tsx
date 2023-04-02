@@ -1,3 +1,4 @@
+import { MouseEventHandler } from "react";
 import styled, { keyframes, css, CSSProperties } from "styled-components";
 
 interface ButtonProps {
@@ -20,7 +21,7 @@ interface ButtonProps {
   /**
    * Optional click handler
    */
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   /**
    * Styling object
    */

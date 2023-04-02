@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 import BackButton from "./BackButton";
 import NextButton from "./NextButton";
 import { Button } from "../../stories/Button";
+import { ErrorBoundary, useErrorBoundary } from "react-error-boundary";
 
 // Define a type for the Joke object
 interface Joke {
@@ -27,78 +28,118 @@ const buttonText: ReviewText = [
 ];
 
 function JokeFetch(): JSX.Element {
-  // Declare state types with hooks
+  // handle errors with try/catch block
+  // in resolved promises, event handlers,
+  // callbacks, async code with setTimeout
+  try {
+    // Declare state types with hooks
 
-  // Render json from fetchJoke() when handleClick() event fires
-  const [joke, setJoke] = useState<string>("");
-  // Toggle button with boolean values
-  const [toggle, setToggle] = useState<boolean>(false);
-  // Randomise array string value "Joke Review" onClick button event fires
-  const [index, setIndex] = useState<IndexState>(-1);
+    // Render json from fetchJoke() when handleClick() event fires
+    const [joke, setJoke] = useState<string>("");
+    // Toggle button with boolean values
+    const [toggle, setToggle] = useState<boolean>(false);
+    // Randomise array string value "Joke Review" onClick button event fires
+    const [index, setIndex] = useState<IndexState>(-1);
 
-  // Declare a constant with type for starting name string
-  const startName: string[] = [""];
-  // Define the current review text space on the current index
-  const currentReview: string = index !== -1 ? buttonText[index] : startName[0];
+    // Declare a constant with type for starting name string
+    const startName: string[] = [""];
+    // Define the current review text space on the current index
+    const currentReview: string =
+      index !== -1 ? buttonText[index] : startName[0];
+    // Declare an async function to fetch the joke
+    async function fetchJoke(): Promise<Joke> {
+      const response = await fetch("https://icanhazdadjoke.com", {
+        headers: {
+          Accept: "application/json",
+        },
+      });
+      const data = response.json() as Promise<Joke>;
+      return data;
+    }
 
-  // Declare an async function to fetch the joke
-  async function fetchJoke(): Promise<Joke> {
-    const response = await fetch("https://icanhazdadjoke.com", {
-      headers: {
-        Accept: "application/json",
-      },
-    });
-    const data = response.json() as Promise<Joke>;
-    return data;
+    // Declare a function to handle the button click event
+    async function handleClick(): Promise<void> {
+      try {
+        const { joke } = await fetchJoke();
+        setJoke(joke);
+      } catch (error) {
+        console.error("There was an error", error);
+      }
+    }
+
+    const jokeTitle = ["D", "a", "d", "J", "o", "k", "e", "s", "🤹🏻‍♂️"];
+
+    return (
+      <ErrorBoundary
+        FallbackComponent={ErrorFallback}
+        onReset={(details) => {
+          // Reset the state of your app so the error doesn't happen again
+        }}
+      >
+        <Container>
+          <Title>
+            {jokeTitle.map((letter, index) => (
+              <span key={index}>{letter}</span>
+            ))}
+          </Title>
+          <TextBox style={{ marginTop: "10rem" }}>
+            <Button
+              onClick={handleClick}
+              primary={false}
+              backgroundColor={"rgb(252, 163, 249)"}
+              size={"large"}
+              label={"Get a Joke"}
+            />
+
+            <JokeBox>{joke}</JokeBox>
+          </TextBox>
+          <Button
+            onClick={() => setToggle(!toggle)}
+            backgroundColor={"rgb(252, 163, 249)"}
+            label={"Show me the giggles"}
+          />
+          {toggle && <JokeBox>🙈😂🙉</JokeBox>}
+          <JokeBox>{currentReview}</JokeBox>
+          <Button
+            onClick={() =>
+              setIndex(Math.floor(Math.random() * buttonText.length))
+            }
+            backgroundColor={"rgb(252, 163, 249)"}
+            label={"Joke Review"}
+          />
+          <JokeBox>
+            <NextButton to={"/"} />
+            <BackButton to={"/rate-joke"} />
+          </JokeBox>
+        </Container>
+      </ErrorBoundary>
+    );
+  } catch (error) {
+    return (
+      <p>
+        Sorry, Something went wrong: 😱😱😱😱😱😱😱😱😱😱😱😱 NOOOO!!!!
+        😲😲😲😲😲😲😲😲
+      </p>
+    );
   }
-
-  // Declare a function to handle the button click event
-  async function handleClick(): Promise<void> {
-    const { joke } = await fetchJoke();
-    setJoke(joke);
-  }
-
-  const jokeTitle = ["D", "a", "d", "J", "o", "k", "e", "s", "🤹🏻‍♂️"];
-
-  return (
-    <Container>
-      <Title>
-        {jokeTitle.map((letter, index) => (
-          <span key={index}>{letter}</span>
-        ))}
-      </Title>
-      <TextBox style={{ marginTop: "10rem" }}>
-        <Button
-          onClick={handleClick}
-          primary={false}
-          backgroundColor={"rgb(252, 163, 249)"}
-          size={"large"}
-          label={"Get a Joke"}
-        />
-
-        <JokeBox>{joke}</JokeBox>
-      </TextBox>
-      <Button
-        onClick={() => setToggle(!toggle)}
-        backgroundColor={"rgb(252, 163, 249)"}
-        label={"Show me the giggles"}
-      />
-      {toggle && <JokeBox>🙈😂🙉</JokeBox>}
-      <JokeBox>{currentReview}</JokeBox>
-      <Button
-        onClick={() => setIndex(Math.floor(Math.random() * buttonText.length))}
-        backgroundColor={"rgb(252, 163, 249)"}
-        label={"Joke Review"}
-      />
-      <JokeBox>
-      <NextButton to={"/"} />
-      <BackButton to={"/rate-joke"} />
-      </JokeBox>
-    </Container>
-  );
 }
 
 export default JokeFetch;
+
+function ErrorFallback({ ...error }) {
+  const { resetBoundary } = useErrorBoundary();
+
+  return (
+    <div role="alert">
+      <p>
+        Sorry, Something went wrong: 😱😱😱😱😱😱😱😱😱😱😱😱 NOOOO!!!!
+        😲😲😲😲😲😲😲😲
+      </p>
+      <pre style={{ color: "red" }}>{error.message}</pre>
+      <button onClick={resetBoundary}>Try again</button>
+    </div>
+  );
+}
 
 const DURATION = "6s";
 

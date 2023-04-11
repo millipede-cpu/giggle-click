@@ -1,7 +1,10 @@
 import { chromium, test } from "@playwright/test";
 
-test("Typing a joke and pun should only appear on the page after clicking the Submit Joke button", async () => {
+test("Typing a joke and pun should only appear on the page after clicking the Submit Joke button", async ({
+  page,
+}) => {
   // 1. user enters page.
+  await page.goto("http://localhost:5173");
   // 2. user inputs text with placeholder.
   // 3. user clicks addjoke button.
   // 4. joke displayed on page.

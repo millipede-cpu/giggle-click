@@ -1,4 +1,4 @@
-import { chromium, test } from "@playwright/test";
+import { chromium, expect, test } from "@playwright/test";
 
 test("Typing a joke and a pun and clicking the seperate buttons should render the text on the homepage", async () => {
   // Simualte a chromium browser with an attribute to slow the running time down by 3 seconds so that you can visually see the test going through each step.
@@ -23,7 +23,17 @@ test("Typing a joke and a pun and clicking the seperate buttons should render th
     )
     .isVisible();
   // 5. user inputs text with placeholder whats the pun?
-
+  await page.getByPlaceholder("What's the pun?").fill("vanity fur!");
   // 6. user clicks addpun button.
+  await page.locator(".submit-pun").click();
   // 7. pun displayed next to joke on page.
+  await page.locator('.showJokePun:has-text("vanity fur!")').isVisible();
+  // 8. locate all elements with class.
+  const showJokePun = page.locator(".showJokePun");
+  const MultipleElements = await showJokePun.count();
+  // loop through them one-by-one to check visibility.
+  for (let text_index = 0; text_index < MultipleElements; text_index++) {
+    const loopText = showJokePun.nth(text_index);
+    await expect(loopText).toBeVisible();
+  }
 });

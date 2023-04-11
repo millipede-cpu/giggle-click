@@ -10,6 +10,7 @@ test("Typing a joke and pun should only appear on the page after clicking the Su
     .getByPlaceholder("Type something funny")
     .fill("I used to be addicted to soap, but I'm clean now.");
   // 3. user clicks addjoke button.
+  await page.locator(".submit-joke").click();
   // 4. joke displayed on page.
   // 5. user inputs text with placeholder whats the pun?
   // 6. user clicks addpun button.

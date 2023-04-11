@@ -1,6 +1,6 @@
 import { chromium, test } from "@playwright/test";
 
-test("Typing a joke and pun should only appear on the page after clicking the Submit Joke button", async () => {
+test("Typing a joke and a pun and clicking the seperate buttons should render the text on the homepage", async () => {
   // Simualte a chromium browser with an attribute to slow the running time down by 3 seconds so that you can visually see the test going through each step.
   const browser = await chromium.launch({
     headless: false,
@@ -23,6 +23,7 @@ test("Typing a joke and pun should only appear on the page after clicking the Su
     )
     .isVisible();
   // 5. user inputs text with placeholder whats the pun?
+
   // 6. user clicks addpun button.
   // 7. pun displayed next to joke on page.
 });

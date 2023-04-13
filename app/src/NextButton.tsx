@@ -16,7 +16,11 @@ export default function BackButtonWrapper({ to }: Props): JSX.Element {
     }
   };
 
-  return <button onClick={handleNext}>Next 🤡🤡🤡</button>;
+  return (
+    <button className="next-button" onClick={handleNext}>
+      Next 🤡🤡🤡
+    </button>
+  );
 }
 
 // We added a try block around the call to navigate(to). This is the part of the code that could potentially throw an error.

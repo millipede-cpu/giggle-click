@@ -27,9 +27,9 @@
 // });
 
 // import { chromium, expect, Page } from "@playwright/test";
-import { test, describe } from "mocha";
+// import { test } from "mocha";
 
-import { chromium, expect } from "@playwright/test";
+import { chromium, expect, test } from "@playwright/test";
 
 test.describe("Button component is visible on multiple pages", () => {
   let browser;

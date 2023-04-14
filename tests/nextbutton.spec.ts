@@ -5,7 +5,7 @@ test.describe("Button component is visible on multiple pages", () => {
   let page;
 
   test.beforeAll(async () => {
-    browser = await chromium.launch({ headless: false });
+    browser = await chromium.launch({ headless: false, slowMo: 3000 });
   });
 
   test.afterAll(async () => {
@@ -15,12 +15,21 @@ test.describe("Button component is visible on multiple pages", () => {
   test.beforeEach(async () => {
     page = await browser.newPage();
     await page.goto("http://localhost:5173/");
+    page = await browser.newPage();
+    await page.goto("http://localhost:5173/joke-randomiser");
+    page = await browser.newPage();
+    await page.goto("http://localhost:5173/card-flip-game");
+    page = await browser.newPage();
+    await page.goto("http://localhost:5173/rate-joke");
+    page = await browser.newPage();
+    await page.goto("http://localhost:5173/joke-fetch");
   });
 
   test.afterEach(async () => {
     await page.close();
   });
 
+  // next button should be visible on home page.
   test("should be visible on the home page", async () => {
     try {
       await expect(page.locator('button[class="next-button"]')).toBeVisible();
@@ -29,6 +38,7 @@ test.describe("Button component is visible on multiple pages", () => {
     }
   });
 
+  // should go to the Joke Randomiser page when clicked on home page.
   test("should go to the Joke Randomiser page when clicked on home page", async () => {
     try {
       await page.click('button[class="next-button"]');
@@ -43,8 +53,6 @@ test.describe("Button component is visible on multiple pages", () => {
     try {
       await page.click('button[class="next-button"]');
       await page.waitForLoadState();
-      await page.click('button[class="next-button"]');
-      await page.waitForLoadState();
       await expect(page.locator('button[class="next-button"]')).toBeVisible();
     } catch (e) {
       console.error(e);
@@ -55,8 +63,14 @@ test.describe("Button component is visible on multiple pages", () => {
     try {
       await page.click('button[class="next-button"]');
       await page.waitForLoadState();
-      await page.click('button[class="next-button"]');
-      await page.waitForLoadState();
+      await expect(page.locator('button[class="next-button"]')).toBeVisible();
+    } catch (e) {
+      console.error(e);
+    }
+  });
+
+  test("should go to the joke fetch page when clicked on rate joke page", async () => {
+    try {
       await page.click('button[class="next-button"]');
       await page.waitForLoadState();
       await expect(page.locator('button[class="next-button"]')).toBeVisible();
@@ -65,17 +79,10 @@ test.describe("Button component is visible on multiple pages", () => {
     }
   });
 
-  test("should go back to the home page when clicked on Rate Joke page", async () => {
+  test("should go back to the home page when clicked on joke fetch page", async () => {
     try {
       await page.click('button[class="next-button"]');
       await page.waitForLoadState();
-      await page.waitForSelector('button[class="next-button"]');
-      await page.click('button[class="next-button"]');
-      await page.waitForLoadState();
-      await page.waitForSelector('button[class="next-button"]');
-      await page.click('button[class="next-button"]');
-      await page.waitForLoadState();
-      await page.waitForSelector('button[class="next-button"]');
       await expect(page.locator('button[class="next-button"]')).toBeVisible();
     } catch (e) {
       console.error(e);

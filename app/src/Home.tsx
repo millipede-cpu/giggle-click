@@ -14,8 +14,11 @@ export default function Home(): JSX.Element {
         <BackButton to={"/joke-fetch"} />
         <StyledTitle>Giggle Click</StyledTitle>
         <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
+          <button
+            id="counter-button"
+            onClick={() => setCount((count) => count + 1)}
+          >
+            <span id="incremented-number">count is {count}</span>
           </button>
           <React.Fragment>
             <AddJoke status={""} />

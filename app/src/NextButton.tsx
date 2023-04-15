@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Button } from "../../stories/Button";
 
 interface Props {
   to: string;
@@ -17,9 +18,12 @@ export default function BackButtonWrapper({ to }: Props): JSX.Element {
   };
 
   return (
-    <button className="next-button" onClick={handleNext}>
-      Next 🤡🤡🤡
-    </button>
+    <Button
+      className="next-button"
+      style={{ marginBottom: "2rem" }}
+      onClick={handleNext}
+      label={"Next 🤡🤡🤡"}
+    />
   );
 }
 

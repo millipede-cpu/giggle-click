@@ -26,6 +26,10 @@ interface ButtonProps {
    * Styling object
    */
   style?: CSSProperties;
+  /**
+   * css selector
+   */
+  className?: string;
 }
 
 const getVariantStyles = ({ primary = false }: ButtonProps) =>

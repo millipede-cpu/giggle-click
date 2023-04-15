@@ -3,6 +3,7 @@ import styled from "styled-components";
 import AddJoke from "./AddJoke";
 import BackButton from "./BackButton";
 import NextButton from "./NextButton";
+import { Button } from "../../stories/Button";
 
 export default function Home(): JSX.Element {
   const [count, setCount] = useState<number>(0);
@@ -14,15 +15,12 @@ export default function Home(): JSX.Element {
         <BackButton to={"/joke-fetch"} />
         <StyledTitle>Giggle Click</StyledTitle>
         <div className="card">
-          <button
-            id="counter-button"
+          <Button
+            className="counter-button incremented-number"
             onClick={() => setCount((count) => count + 1)}
-          >
-            <span id="incremented-number">count is {count}</span>
-          </button>
-          <React.Fragment>
-            <AddJoke status={""} />
-          </React.Fragment>
+            label={`Count is ${count}`}
+          />
+          <AddJoke status={""} />
         </div>
       </AppStyle>
     </>

@@ -12,9 +12,9 @@ test("Counter button increments by one each time it is clicked", async () => {
     await page.goto("http://localhost:5173");
     // wait for counter button selector
     await page.waitForLoadState();
-    const button = await page.$("#counter-button");
+    const button = await page.$(".counter-button");
     // initialise incrementedNumber variable
-    const incrementedNumber = await page.$("#incremented-number");
+    const incrementedNumber = await page.$(".incremented-number");
     // iterate through incremented numbers, beginning at 1 and ending at 10
     for (let i = 0; i < 10; i++) {
       await button?.click();

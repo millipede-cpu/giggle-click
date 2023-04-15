@@ -27,7 +27,7 @@ interface ButtonProps {
    */
   style?: CSSProperties;
   /**
-   * className
+   * css selector
    */
   className?: string;
 }

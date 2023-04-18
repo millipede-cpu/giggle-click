@@ -1,21 +1,41 @@
-// adding the correct import paths.
 import React from "react";
-import { describe, it, expect, TestRenderer } from "react-test-renderer";
-import Cards from "../CardFlipGame";
+import { render, fireEvent } from "@testing-library/react";
+import Card from "../Card"; // import the CardProps type
 
-// interface Cards {
-//   cards: string[];
-// }
+// it("flips cards face up when two cards match", () => {
+//   const cards = ["A", "A", "B", "B"];
+//   const { getAllByTestId } = render(<Card cards={cards} />);
+//   const [cardA, cardB] = getAllByTestId("card");
 
-// card component will render list of cards.
-describe("Card component", () => {
-  it("renders a list of cards", () => {
-    const cards = ["A", "B", "C"];
-    const component = TestRenderer.create(<Cards cards={cards} />);
-    const tree = component.toJSON();
+//   expect(cardA.getAttribute("data-face-up")).toBe("false");
+//   expect(cardB.getAttribute("data-face-up")).toBe("false");
 
-    // Verifying that the component renders a list of cards with the correct length.
-    expect(tree.children.length).toBe(3);
-    expect(tree.children.every((child) => child.type === "div")).toBe(true);
-  });
+//   fireEvent.click(cardA);
+//   fireEvent.click(cardB);
+
+//   expect(cardA.getAttribute("data-face-up")).toBe("true");
+//   expect(cardB.getAttribute("data-face-up")).toBe("true");
+// });
+
+// export {};
+
+import React from "react";
+import { render, fireEvent, RenderResult } from "@testing-library/react";
+import Card, { CardProps } from "../Card";
+
+it("flips cards face up when two cards match", () => {
+  const cards: string[] = ["A", "A", "B", "B"];
+  const { getAllByTestId }: RenderResult = render(<Card cards={cards} />);
+  const [cardA, cardB]: HTMLElement[] = getAllByTestId("card");
+
+  expect(cardA.getAttribute("data-face-up")).toBe("false");
+  expect(cardB.getAttribute("data-face-up")).toBe("false");
+
+  fireEvent.click(cardA);
+  fireEvent.click(cardB);
+
+  expect(cardA.getAttribute("data-face-up")).toBe("true");
+  expect(cardB.getAttribute("data-face-up")).toBe("true");
 });
+
+export {};

@@ -3,8 +3,28 @@ import BackButton from "./BackButton";
 import NextButton from "./NextButton";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "./App";
+import { useState } from "react";
+import Card from "./Card";
+import * as React from "react";
 
-export default function CardFlipGame(): JSX.Element {
+interface CardsProps {
+  cards: string[];
+}
+
+export default function CardFlipGame({ cards }: CardsProps): JSX.Element {
+  const [selectedCards, setSelectedCards] = useState<string[]>([]);
+
+  const handleCardClick = (value: string) => {
+    if (selectedCards.length === 2) {
+      setSelectedCards([]);
+    } else {
+      setSelectedCards([...selectedCards, value]);
+    }
+  };
+
+  const matchCards = (card1: string, card2: string) => {
+    return card1 === card2;
+  };
   try {
     // Your code that could potentially throw an error goes here
 
@@ -18,6 +38,20 @@ export default function CardFlipGame(): JSX.Element {
         <NextButton to={"/rate-joke"} />
         <BackButton to={"/joke-randomiser"} />
         <Title>Card Flip Game 🃟⤵️🃏</Title>
+
+        <div>
+          {cards.map((card) => (
+            <Card
+              key={card}
+              value={card}
+              faceUp={
+                selectedCards.includes(card) ||
+                matchCards(selectedCards[0], selectedCards[1])
+              }
+              onClick={() => handleCardClick(card)}
+            />
+          ))}
+        </div>
       </ErrorBoundary>
     );
   } catch (error) {

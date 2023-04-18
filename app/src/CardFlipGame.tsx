@@ -49,6 +49,7 @@ export default function CardFlipGame({ cards }: CardsProps): JSX.Element {
                 matchCards(selectedCards[0], selectedCards[1])
               }
               onClick={() => handleCardClick(card)}
+              cards={[]}
             />
           ))}
         </div>

@@ -9,24 +9,7 @@
     "test": "jest"
   },
   "jest": {
-    "transform": {
-      "^.+\\.tsx?$": "babel-jest"
-    },
-    "moduleNameMapper": {
-      "\\.(css|less|sass|scss)$": "identity-obj-proxy"
-    },
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
-    "preset": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ]
+    "preset": "ts-jest/presets/default"
   },
   "dependencies": {
     "@babel/core": "^7.21.4",

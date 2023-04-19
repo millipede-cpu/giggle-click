@@ -1,16 +1,16 @@
-// import type { Config } from "@jest/types";
+import type { Config } from "@jest/types";
 
-// const config: Config.InitialOptions = {
-//   verbose: true,
-//   moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
-//   transform: {
-//     "^.+\\.tsx?$": "ts-jest",
-//   },
-//   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-//   testEnvironment: "jsdom",
-// };
+const config: Config.InitialOptions = {
+  verbose: true,
+  moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
+  transform: {
+    "^.+\\.tsx?$": "ts-jest",
+  },
+  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+  testEnvironment: "jsdom",
+};
 
-// export default config;
+export default config;
 
 // module.exports = {
 //   preset: "ts-jest",
@@ -105,21 +105,21 @@
 // export default config;
 
 // jest.config.js
-module.exports = {
-  preset: "ts-jest/presets/default-esm",
-  testEnvironment: "node",
-  testMatch: ["<rootDir>/src/**/*.spec.ts"],
-  moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1",
-  },
-  transform: {
-    "^.+\\.tsx?$": "ts-jest",
-  },
-  globals: {
-    "ts-jest": {
-      tsconfig: "<rootDir>/tsconfig.json",
-    },
-  },
-};
+// module.exports = {
+//   preset: "ts-jest/presets/default-esm",
+//   testEnvironment: "node",
+//   testMatch: ["<rootDir>/src/**/*.spec.ts"],
+//   moduleNameMapper: {
+//     "^@/(.*)$": "<rootDir>/src/$1",
+//   },
+//   transform: {
+//     "^.+\\.tsx?$": "ts-jest",
+//   },
+//   globals: {
+//     "ts-jest": {
+//       tsconfig: "<rootDir>/tsconfig.json",
+//     },
+//   },
+// };
 
-export {};
+// export {};

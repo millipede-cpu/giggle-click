@@ -1,10 +1,17 @@
 import React from "react";
 
+// interface CardProps {
+//   value: string;
+//   faceUp: boolean;
+//   onClick: () => void;
+//   cards: string[];
+// }
+
 interface CardProps {
   value: string;
   faceUp: boolean;
   onClick: () => void;
-  cards: string[];
+  cards: string[]; // new property representing the array of cards
 }
 
 const Card: React.FC<CardProps> = ({ value, faceUp, onClick, cards }) => {

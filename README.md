@@ -21,7 +21,8 @@
 - User will be able to check off the joke once it's been said.
 - User will be able to delete joke or edit when needed.
 
-## TDD Testing with Playwright 🎭
+## e2e Testing with Playwright 🎭
+## Unit and Integration TDD testing with Jest 🧪
 
 ## 📚 Storybook to Build UI components and pages.
 

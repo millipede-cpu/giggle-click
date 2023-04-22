@@ -9,7 +9,8 @@
 
 - `yarn` in the root directory to ensure you have the latest installed packages
 - `cd app` and `yarn dev` to start the local host server
-- `npx playwright test` for playwright tests
+- `yarn test:e2e` for running playwright tests
+- `yarn test` for running jest tests with react-test-renderer (snapshot testing) and react-testing-library (dom testing)
 - `yarn storybook` to run the storybook server
 
 # About the App:

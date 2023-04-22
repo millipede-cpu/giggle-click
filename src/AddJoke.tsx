@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { AppliedTheFavouriteJoke } from "./AppliedTheFavouriteJoke";
 import { IJokes } from "./interfaces";
+import React from "react";
 
 // Add types for the props object
 interface AddJokeProps {

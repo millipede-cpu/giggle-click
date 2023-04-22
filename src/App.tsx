@@ -12,7 +12,8 @@ import {
   useState,
 } from "react";
 import styled from "styled-components";
-import { Button } from "../../stories/Button";
+import { Button } from "../stories/Button";
+import React from "react";
 
 interface AppRoute {
   path: string;
@@ -32,13 +33,7 @@ interface ErrorFallbackProps {
 const appRoutes: AppRoute[] = [
   {
     path: "/",
-    component: (
-      <Home
-        onClick={() => {
-          throw new Error("Function not implemented.");
-        }}
-      />
-    ),
+    component: <Home />,
   },
   {
     path: "/joke-randomiser",

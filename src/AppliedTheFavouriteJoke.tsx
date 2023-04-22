@@ -1,3 +1,4 @@
+import React from "react";
 import { IJokes } from "./interfaces";
 
 interface Props {

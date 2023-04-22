@@ -3,7 +3,7 @@ import styled from "styled-components";
 import AddJoke from "./AddJoke";
 import BackButton from "./BackButton";
 import NextButton from "./NextButton";
-import { Button } from "../../stories/Button";
+import { Button } from "../stories/Button";
 
 export default function Home(): JSX.Element {
   const [count, setCount] = useState<number>(0);

@@ -5,7 +5,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "./App";
 import { useState } from "react";
 import Card from "./Card";
-import * as React from "react";
+import React from "react";
 
 interface CardsProps {
   cards?: string[];

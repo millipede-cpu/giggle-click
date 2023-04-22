@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview",
-    "test": "jest"
+    "preview": "vite preview"
   },
   "jest": {
     "preset": "ts-jest/presets/default"

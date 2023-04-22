@@ -5,7 +5,7 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "target": "es2017",
-    "jsx": "react-jsx",
+    "jsx": "react",
     "lib": ["es2017", "dom"]
   },
   "include": ["src", "src/__tests__", "../jest.config.ts", "src/__tests__"]

@@ -14,7 +14,12 @@ interface CardProps {
   cards: string[]; // new property representing the array of cards
 }
 
-const Card: React.FC<CardProps> = ({ value, faceUp, onClick, cards }) => {
+export default function Card({
+  value,
+  faceUp,
+  onClick,
+  cards,
+}: CardProps): JSX.Element {
   return (
     <div onClick={onClick}>
       {faceUp ? (
@@ -26,6 +31,4 @@ const Card: React.FC<CardProps> = ({ value, faceUp, onClick, cards }) => {
       )}
     </div>
   );
-};
-
-export default Card;
+}

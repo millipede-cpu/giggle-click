@@ -7,7 +7,8 @@
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test": "jest"
+    "test": "jest",
+    "test:e2e": "npx playwright test --config=playwright.config.ts"
   },
   "repository": {
     "type": "git",

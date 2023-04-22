@@ -8,7 +8,7 @@ import Card from "./Card";
 import * as React from "react";
 
 interface CardsProps {
-  cards: string[];
+  cards?: string[];
 }
 
 export default function CardFlipGame({ cards }: CardsProps): JSX.Element {
@@ -40,7 +40,12 @@ export default function CardFlipGame({ cards }: CardsProps): JSX.Element {
         <Title>Card Flip Game 🃟⤵️🃏</Title>
 
         <div>
-          {cards.map((card) => (
+          {/** cards array is given the option to be undefined with a question mark,
+           * this needs to be added to the interface cards type as well.
+           * If the array has an error, the error handling will show an error
+           * message so the issue can be resolved.
+           */}
+          {cards?.map((card) => (
             <Card
               key={card}
               value={card}

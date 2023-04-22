@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
+import React from "react";
 
 /** React Version 18 has included updates where ReactDOM
  *  is not needed to be added before functions such as createRoot,

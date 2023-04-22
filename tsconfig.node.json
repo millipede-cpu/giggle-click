@@ -8,5 +8,11 @@
     "jsx": "react",
     "lib": ["es2017", "dom"]
   },
-  "include": ["src", "src/__tests__", "../jest.config.ts", "src/__tests__"]
+  "include": [
+    "src",
+    "src/__tests__",
+    "../jest.config.ts",
+    "src/__tests__",
+    "stories"
+  ]
 }

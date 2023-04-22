@@ -2,8 +2,9 @@ import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import BackButton from "./BackButton";
 import NextButton from "./NextButton";
-import { Button } from "../../stories/Button";
+import { Button } from "../stories/Button";
 import { ErrorBoundary, useErrorBoundary } from "react-error-boundary";
+import React from "react";
 
 // Define a type for the Joke object
 interface Joke {

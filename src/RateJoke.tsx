@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BackButton from "./BackButton";
 import NextButton from "./NextButton";
+import React from "react";
 
 // export default function RateJoke() {
 //   const [happy, setHappy] = useState(false);

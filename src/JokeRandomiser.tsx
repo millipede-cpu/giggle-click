@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import BackButton from "./BackButton";
 import NextButton from "./NextButton";
+import React from "react";
 
 export default function JokeRandomiser() {
   return (

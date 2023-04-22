@@ -17,5 +17,5 @@
     "jsx": "react-jsx",
     "lib": ["es2017", "dom"]
   },
-  "include": ["src", "../__tests__", "src/jest.config.ts", "__tests__"]
+  "include": ["src", "../__tests__", "src/jest.config.ts", "src/__tests__"]
 }

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import BackButton from "./BackButton";
 import NextButton from "./NextButton";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Button } from "../stories/Button";
 
 // Define a type for the Joke object
@@ -15,6 +15,13 @@ interface Joke {
 export default function JokeRandomiser() {
   // Render json from fetchJoke() when handleClick() event fires
   const [joke, setJoke] = useState<Joke | null>(null);
+  //  useState with boolean type to initially hide the punchline by default
+  const [isHidden, setIsHidden] = useState<boolean>(false);
+  // useCallback to toggle the boolean state of the punchline
+  const toggleJokePunchline = useCallback(
+    () => setIsHidden((isHidden) => !isHidden),
+    [setIsHidden]
+  );
 
   // Declare an async function to fetch a random joke
   const randomJoke = async (): Promise<Joke> => {
@@ -50,12 +57,19 @@ export default function JokeRandomiser() {
         primary={false}
         backgroundColor={"rgb(252, 163, 249)"}
         size={"large"}
-        label={"Get a Random Joke"}
+        label={"Get Random Joke"}
+        style={{ margin: "2rem" }}
       />
       {joke && (
         <div>
           <JokeBox>{joke.setup}</JokeBox>
-          <JokeBox>{joke.punchline}</JokeBox>
+          <Button
+            onClick={toggleJokePunchline}
+            backgroundColor={"rgb(252, 163, 249)"}
+            size={"large"}
+            label={"🥁🥁🥁 Click for giggles"}
+          />
+          {isHidden ? <JokeBox>{joke.punchline}</JokeBox> : null}
         </div>
       )}
     </PageStyle>

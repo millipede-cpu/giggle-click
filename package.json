@@ -5,6 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "vite",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",

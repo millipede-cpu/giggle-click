@@ -14,7 +14,11 @@ export default function RateJoke() {
         <NextButton to={"/joke-fetch"} />
         <BackButton to={"/card-flip-game"} />
         <h1>Rate Joke 👍🏼🎭👎🏼</h1>
-        <button className="happy-click" onClick={() => setHappy(!happy)}>
+        <button
+          className="happy-click"
+          onClick={() => setHappy(!happy)}
+          data-testid="happy-button"
+        >
           Happy
         </button>
         {happy ? (
@@ -23,7 +27,11 @@ export default function RateJoke() {
           </span>
         ) : null}
 
-        <button className="sad-click" onClick={() => setSad(!sad)}>
+        <button
+          className="sad-click"
+          onClick={() => setSad(!sad)}
+          data-testid="sad-button"
+        >
           Sad
         </button>
         {sad ? (

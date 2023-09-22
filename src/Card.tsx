@@ -1,12 +1,5 @@
 import React from "react";
 
-// interface CardProps {
-//   value: string;
-//   faceUp: boolean;
-//   onClick: () => void;
-//   cards: string[];
-// }
-
 interface CardProps {
   value: string;
   faceUp: boolean;

@@ -54,4 +54,18 @@ describe("RateJoke", () => {
     const sadEmoji = screen.getByTestId("sad-emoji");
     expect(sadEmoji).toBeTruthy(); // Use Jest's toBeTruthy matcher
   });
+
+  test("no happy emoji is displayed when the Happy button is not clicked", () => {
+    render(
+      <TestErrorBoundary>
+        <MemoryRouter>
+          <RateJoke />
+        </MemoryRouter>
+      </TestErrorBoundary>
+    );
+
+    // Ensure that the happy emoji is not displayed
+    const happyEmoji = screen.queryByTestId("happy-emoji");
+    expect(happyEmoji).toBeNull();
+  });
 });

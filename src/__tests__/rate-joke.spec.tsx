@@ -82,4 +82,32 @@ describe("RateJoke", () => {
     const sadEmoji = screen.queryByTestId("sad-emoji");
     expect(sadEmoji).toBeNull();
   });
+
+  test("clicking the Sad button 10 times updates the sad state", () => {
+    render(<RateJoke />);
+
+    const sadButton = screen.getByText("Sad");
+
+    // Simulate clicking the Sad button 10 times
+    for (let i = 0; i < 10; i++) {
+      fireEvent.click(sadButton);
+    }
+
+    const sadEmoji = screen.getByTestId("sad-emoji");
+    expect(sadEmoji).toBeTruthy(); // Ensure that the sad emoji is displayed
+  });
+
+  test("clicking the Happy button 10 times updates the happy state", () => {
+    render(<RateJoke />);
+
+    const happyButton = screen.getByText("Happy");
+
+    // Simulate clicking the Happy button 10 times
+    for (let i = 0; i < 10; i++) {
+      fireEvent.click(happyButton);
+    }
+
+    const happyEmoji = screen.getByTestId("happy-emoji");
+    expect(happyEmoji).toBeTruthy(); // Ensure that the happy emoji is displayed
+  });
 });

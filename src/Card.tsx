@@ -19,9 +19,10 @@ export default function Card({
   faceUp,
   onClick,
   cards,
-}: CardProps): JSX.Element {
+}: // cards,
+CardProps): JSX.Element {
   return (
-    <div onClick={onClick}>
+    <div onClick={onClick} data-testid="card" data-face-up={faceUp}>
       {faceUp ? (
         <span>{value}</span>
       ) : (

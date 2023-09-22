@@ -68,4 +68,18 @@ describe("RateJoke", () => {
     const happyEmoji = screen.queryByTestId("happy-emoji");
     expect(happyEmoji).toBeNull();
   });
+
+  test("no sad emoji is displayed when the Sad button is not clicked", () => {
+    render(
+      <TestErrorBoundary>
+        <MemoryRouter>
+          <RateJoke />
+        </MemoryRouter>
+      </TestErrorBoundary>
+    );
+
+    // Ensure that the sad emoji is not displayed
+    const sadEmoji = screen.queryByTestId("sad-emoji");
+    expect(sadEmoji).toBeNull();
+  });
 });

@@ -3,28 +3,6 @@ import BackButton from "./BackButton";
 import NextButton from "./NextButton";
 import React from "react";
 
-// export default function RateJoke() {
-//   const [happy, setHappy] = useState(false);
-//   const [sad, setSad] = useState(false);
-
-//   return (
-//     <>
-//       <NextButton to={"/joke-fetch"} />
-//       <BackButton to={"/card-flip-game"} />
-//       <h1>Rate Joke 👍🏼🎭👎🏼</h1>
-//       <button className="happy-click" onClick={() => setHappy(!happy)}>
-//         Happy
-//       </button>
-//       {happy ? <span className="happy">&#128514;</span> : null}
-
-//       <button className="sad-click" onClick={() => setSad(!sad)}>
-//         Sad
-//       </button>
-//       {sad ? <span className="sad">&#128529;</span> : null}
-//     </>
-//   );
-// }
-
 export default function RateJoke() {
   const [happy, setHappy] = useState(false);
   const [sad, setSad] = useState(false);
@@ -36,15 +14,31 @@ export default function RateJoke() {
         <NextButton to={"/joke-fetch"} />
         <BackButton to={"/card-flip-game"} />
         <h1>Rate Joke 👍🏼🎭👎🏼</h1>
-        <button className="happy-click" onClick={() => setHappy(!happy)}>
+        <button
+          className="happy-click"
+          onClick={() => setHappy(!happy)}
+          data-testid="happy-button"
+        >
           Happy
         </button>
-        {happy ? <span className="happy">&#128514;</span> : null}
+        {happy ? (
+          <span className="happy" data-testid="happy-emoji">
+            &#128514;
+          </span>
+        ) : null}
 
-        <button className="sad-click" onClick={() => setSad(!sad)}>
+        <button
+          className="sad-click"
+          onClick={() => setSad(!sad)}
+          data-testid="sad-button"
+        >
           Sad
         </button>
-        {sad ? <span className="sad">&#128529;</span> : null}
+        {sad ? (
+          <span className="sad" data-testid="sad-emoji">
+            &#128529;
+          </span>
+        ) : null}
       </>
     );
   } catch (error) {

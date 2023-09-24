@@ -5,7 +5,8 @@ test.describe("Button component is visible on multiple pages", () => {
   let page;
 
   test.beforeAll(async () => {
-    browser = await chromium.launch({ headless: false, slowMo: 3000 });
+    browser = await chromium.launch();
+    page = await browser.newPage();
   });
 
   test.afterAll(async () => {
@@ -13,79 +14,41 @@ test.describe("Button component is visible on multiple pages", () => {
   });
 
   test.beforeEach(async () => {
-    page = await browser.newPage();
-    await page.goto("http://localhost:5173/");
-    page = await browser.newPage();
-    await page.goto("http://localhost:5173/joke-randomiser");
-    page = await browser.newPage();
-    await page.goto("http://localhost:5173/card-flip-game");
-    page = await browser.newPage();
-    await page.goto("http://localhost:5173/rate-joke");
-    page = await browser.newPage();
-    await page.goto("http://localhost:5173/joke-fetch");
+    await page.goto("http://localhost:5173");
   });
 
-  test.afterEach(async () => {
-    await page.close();
-  });
+  // Define a reusable function to navigate to pages and check buttons
+  async function navigateToPageAndCheckButton(pageUrl) {
+    await page.goto(`http://localhost:5173${pageUrl}`);
+    await expect(page.getByTestId("next-button")).toBeVisible();
+  }
 
-  // next button should be visible on home page.
   test("should be visible on the home page", async () => {
-    try {
-      await expect(page.locator('button[class="next-button"]')).toBeVisible();
-    } catch (e) {
-      console.error(e);
+    // Check the home page
+    await expect(page.getByTestId("next-button")).toBeVisible();
+  });
+
+  test("should navigate through pages and check the button", async () => {
+    // Define the sequence of page navigation
+    const pageSequence = [
+      "/joke-randomiser",
+      "/card-flip-game",
+      "/rate-joke",
+      "/joke-fetch",
+    ];
+
+    // Iterate through pages and check the button
+    for (const pageUrl of pageSequence) {
+      await navigateToPageAndCheckButton(pageUrl);
     }
   });
 
-  // should go to the Joke Randomiser page when clicked on home page.
-  test("should go to the Joke Randomiser page when clicked on home page", async () => {
-    try {
-      await page.click('button[class="next-button"]');
-      await page.waitForLoadState();
-      await expect(page.locator('button[class="next-button"]')).toBeVisible();
-    } catch (e) {
-      console.error(e);
-    }
-  });
+  test("should go back to the home page from joke fetch page", async () => {
+    // Navigate to joke-fetch page
+    await navigateToPageAndCheckButton("/joke-fetch");
 
-  test("should go to the Card Flip Game page when clicked on Joke Randomiser page", async () => {
-    try {
-      await page.click('button[class="next-button"]');
-      await page.waitForLoadState();
-      await expect(page.locator('button[class="next-button"]')).toBeVisible();
-    } catch (e) {
-      console.error(e);
-    }
-  });
-
-  test("should go to the Rate Joke page when clicked on Card Flip Game page", async () => {
-    try {
-      await page.click('button[class="next-button"]');
-      await page.waitForLoadState();
-      await expect(page.locator('button[class="next-button"]')).toBeVisible();
-    } catch (e) {
-      console.error(e);
-    }
-  });
-
-  test("should go to the joke fetch page when clicked on rate joke page", async () => {
-    try {
-      await page.click('button[class="next-button"]');
-      await page.waitForLoadState();
-      await expect(page.locator('button[class="next-button"]')).toBeVisible();
-    } catch (e) {
-      console.error(e);
-    }
-  });
-
-  test("should go back to the home page when clicked on joke fetch page", async () => {
-    try {
-      await page.click('button[class="next-button"]');
-      await page.waitForLoadState();
-      await expect(page.locator('button[class="next-button"]')).toBeVisible();
-    } catch (e) {
-      console.error(e);
-    }
+    // Go back to the home page
+    await page.goBack();
+    await expect(page.getByTestId("next-button")).toBeVisible();
   });
 });

@@ -1,10 +1,7 @@
 import { test, chromium, expect } from "@playwright/test";
 
 test("Counter button increments by one each time it is clicked", async () => {
-  const browser = await chromium.launch({
-    headless: false,
-    slowMo: 1000,
-  });
+  const browser = await chromium.launch();
   const context = await browser.newContext();
   const page = await context.newPage();
   try {

@@ -2,10 +2,7 @@ import { chromium, expect, test } from "@playwright/test";
 
 test("Typing a joke and a pun and clicking the seperate buttons should render the text on the homepage", async () => {
   // Simualte a chromium browser with an attribute to slow the running time down by 3 seconds so that you can visually see the test going through each step.
-  const browser = await chromium.launch({
-    headless: false,
-    slowMo: 3000,
-  });
+  const browser = await chromium.launch();
   const context = await browser.newContext();
   const page = await context.newPage();
   // 1. user enters page.

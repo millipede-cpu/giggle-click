@@ -1,9 +1,7 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import BackButton from "./BackButton";
 import NextButton from "./NextButton";
-import { ErrorBoundary } from "react-error-boundary";
-import ErrorFallback from "./App";
-import { useState } from "react";
 import Card from "./Card";
 import React from "react";
 
@@ -11,72 +9,87 @@ interface CardsProps {
   cards?: string[];
 }
 
-export default function CardFlipGame({ cards }: CardsProps): JSX.Element {
-  const [selectedCards, setSelectedCards] = useState<string[]>([]);
+interface CardData {
+  id: number;
+  value: string;
+}
 
-  const handleCardClick = (value: string) => {
-    if (selectedCards.length === 2) {
-      setSelectedCards([]);
-    } else {
-      setSelectedCards([...selectedCards, value]);
+export default function CardFlipGame({ cards }: CardsProps): JSX.Element {
+  const defaultCards = cards ?? ["A", "B", "C", "A", "B", "C"];
+  const [deck, setDeck] = useState<CardData[]>([]);
+  const [flipped, setFlipped] = useState<number[]>([]);
+  const [matched, setMatched] = useState<number[]>([]);
+  const [lockBoard, setLockBoard] = useState(false);
+
+  // Shuffle and initialise the deck on mount
+  useEffect(() => {
+    const shuffled = [...defaultCards]
+      .flatMap((value) => [value, value]) // Ensure pairs
+      .map((value, i) => ({ id: i + Math.random(), value }))
+      .sort(() => Math.random() - 0.5);
+    setDeck(shuffled);
+  }, [cards]);
+
+  const handleCardClick = (id: number) => {
+    if (lockBoard || flipped.includes(id) || matched.includes(id)) return;
+
+    const newFlipped = [...flipped, id];
+    setFlipped(newFlipped);
+
+    if (newFlipped.length === 2) {
+      setLockBoard(true);
+      const [first, second] = newFlipped;
+      const firstCard = deck.find((card) => card.id === first);
+      const secondCard = deck.find((card) => card.id === second);
+
+      if (firstCard && secondCard && firstCard.value === secondCard.value) {
+        setMatched((prev) => [...prev, first, second]);
+        setTimeout(() => {
+          setFlipped([]);
+          setLockBoard(false);
+        }, 1000);
+      } else {
+        setTimeout(() => {
+          setFlipped([]);
+          setLockBoard(false);
+        }, 1000);
+      }
     }
   };
 
-  const matchCards = (card1: string, card2: string) => {
-    return card1 === card2;
-  };
-  try {
-    // Your code that could potentially throw an error goes here
-
-    return (
-      <ErrorBoundary
-        FallbackComponent={ErrorFallback}
-        onReset={(details) => {
-          // Reset the state of your app so the error doesn't happen again
-        }}
-      >
-        <NextButton to={"/rate-joke"} />
-        <BackButton to={"/joke-randomiser"} />
-        <Title>Card Flip Game 🃟⤵️🃏</Title>
-
-        <div>
-          {/** cards array is given the option to be undefined with a question mark,
-           * this needs to be added to the interface cards type as well.
-           * If the array has an error, the error handling will show an error
-           * message so the issue can be resolved.
-           */}
-          {cards?.map((card) => (
-            <Card
-              key={card}
-              value={card}
-              faceUp={
-                selectedCards.includes(card) ||
-                matchCards(selectedCards[0], selectedCards[1])
-              }
-              onClick={() => handleCardClick(card)}
-              cards={[]}
-            />
-          ))}
-        </div>
-      </ErrorBoundary>
-    );
-  } catch (error) {
-    // Your error handling code goes here
-    console.error("An error occurred:", error);
-    return (
-      <p>
-        😱😱😱😱😱😱😱😱😱😱😱😱 Sorry, something went wrong. Theres no card
-        flip game for us today NOOOOOOO!!!!!!! 😲😲😲😲😲😲😲😲
-      </p>
-    );
-  }
+  return (
+    <Container>
+      <NextButton to="/rate-joke" />
+      <BackButton to="/joke-randomiser" />
+      <Title>Card Flip Game 🃏</Title>
+      <CardGrid>
+        {deck.map((card) => (
+          <Card
+            key={card.id}
+            value={card.value}
+            isFlipped={flipped.includes(card.id) || matched.includes(card.id)}
+            onClick={() => handleCardClick(card.id)}
+          />
+        ))}
+      </CardGrid>
+    </Container>
+  );
 }
+
+const Container = styled.div`
+  text-align: center;
+  padding: 2rem;
+`;
 
 const Title = styled.h1`
   font-size: 3rem;
   color: #0eb0f3;
 `;
 
-// wrapped the code that could potentially throw an error in a try block. If an error is thrown, execution will jump to the catch block, where you can handle the error in whatever way you see fit.
-
-// In the catch block, I've simply logged the error to the console and returned a simple error message.
+const CardGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 3rem;
+`;

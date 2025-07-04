@@ -12,7 +12,7 @@ export default function Card({ value, isFlipped, onClick }: CardProps) {
     <CardWrapper onClick={onClick}>
       <CardInner isFlipped={isFlipped}>
         <CardFront>{value}</CardFront>
-        <CardBack>🂠</CardBack>
+        <CardBack>🤡🥁</CardBack>
       </CardInner>
     </CardWrapper>
   );
@@ -48,9 +48,15 @@ const CardFace = styled.div`
 
 const CardFront = styled(CardFace)`
 
-  background: #222;
-  color: #f1c40f;
+  background: #000;
+  color:rgb(250, 192, 75);
   transform: rotateY(180deg);
+  font-size: 0.7rem;
+  word-break: break-word;
+  padding: 0.3rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 `;
 
 const CardBack = styled(CardFace)`

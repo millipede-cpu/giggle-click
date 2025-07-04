@@ -11,24 +11,50 @@ interface CardsProps {
 
 interface CardData {
   id: number;
+  jokeId: number;
+  type: "setup" | "punchline";
   value: string;
 }
 
+// Define a type for the Joke object
+interface Joke {
+  id: number;
+  type: string;
+  setup: string;
+  punchline: string;
+}
+
 export default function CardFlipGame({ cards }: CardsProps): JSX.Element {
-  const defaultCards = cards ?? ["A", "B", "C", "A", "B", "C"];
   const [deck, setDeck] = useState<CardData[]>([]);
   const [flipped, setFlipped] = useState<number[]>([]);
   const [matched, setMatched] = useState<number[]>([]);
   const [lockBoard, setLockBoard] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   // Shuffle and initialise the deck on mount
   useEffect(() => {
-    const shuffled = [...defaultCards]
-      .flatMap((value) => [value, value]) // Ensure pairs
-      .map((value, i) => ({ id: i + Math.random(), value }))
-      .sort(() => Math.random() - 0.5);
-    setDeck(shuffled);
-  }, [cards]);
+async function setupDeck() {
+  let cardData: CardData[] = [];
+  if (cards && cards.length > 0) {
+    cardData = cards.flatMap((value, i) => [
+      {id: i + Math.random(), jokeId: i, type: "setup", value},
+      {id: i + Math.random(), jokeId: i, type: "punchline", value}
+    ])
+  } else {
+    // Fetch jokes and use their setup or punchline as card values
+    const jokes = await randomTen();
+    cardData = jokes.flatMap(joke => [
+     { id: joke.id + Math.random(), jokeId: joke.id, type: "setup", value: joke.setup },
+     { id: joke.id + 1000 + Math.random(), jokeId: joke.id, type: "punchline", value: joke.punchline }
+    ]);
+      const shuffled = cardData.sort(() => Math.random() - 0.5);
+    
+      setDeck(shuffled);
+    }
+  }
+  setupDeck();
+}, [cards, refreshKey]);
+
 
   const handleCardClick = (id: number) => {
     if (lockBoard || flipped.includes(id) || matched.includes(id)) return;
@@ -42,7 +68,15 @@ export default function CardFlipGame({ cards }: CardsProps): JSX.Element {
       const firstCard = deck.find((card) => card.id === first);
       const secondCard = deck.find((card) => card.id === second);
 
-      if (firstCard && secondCard && firstCard.value === secondCard.value) {
+      // Only match if both cards are of the same jokeId
+      if (firstCard && 
+        secondCard && 
+        firstCard.jokeId === secondCard.jokeId &&
+      firstCard.type === "setup" && 
+      secondCard.type === "punchline"
+    ) {
+        // If they match, add both to matched state
+
         setMatched((prev) => [...prev, first, second]);
         setTimeout(() => {
           setFlipped([]);
@@ -57,11 +91,37 @@ export default function CardFlipGame({ cards }: CardsProps): JSX.Element {
     }
   };
 
+
+  // Declare an async function to fetch ten random jokes
+  const randomTen = async (): Promise<Joke[]> => {
+    const response = await fetch(
+      "https://official-joke-api.appspot.com/random_ten",
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+    const data = (await response.json()) as Joke[];
+    return data;
+  };
+
+  // Check if all cards are matched
+  const allMatched = deck.length > 0 && matched.length === deck.length;
+
+  //  Handle refresh button logic here with onclick function
+  const handleRefresh = () => setRefreshKey((num) => num + 1);
+
   return (
     <Container>
       <NextButton to="/rate-joke" />
       <BackButton to="/joke-randomiser" />
       <Title>Card Flip Game 🃏</Title>
+      {allMatched ?? (
+        <RefreshButton onClick={handleRefresh}>
+          Refresh ⟳
+        </RefreshButton>
+      )} 
       <CardGrid>
         {deck.map((card) => (
           <Card
@@ -93,3 +153,10 @@ const CardGrid = styled.div`
   gap: 20px;
   margin-top: 3rem;
 `;
+
+const RefreshButton = styled.button`
+background-color: #0eb0f3;
+color: white;
+border: 2px solid navy;
+border-radius: 5px;
+margin: 2rem;`

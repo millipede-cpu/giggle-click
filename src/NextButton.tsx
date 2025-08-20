@@ -32,7 +32,7 @@ export default function BackButtonWrapper({ to }: Props): JSX.Element {
       className="next-button"
       data-testid="next-button"
       onClick={handleNext}
-      label={"Next 🤡🤡🤡"}
+      label={"Next"}
     />
     </ButtonContainer>
   );

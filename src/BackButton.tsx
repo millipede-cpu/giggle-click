@@ -31,7 +31,7 @@ export default function BackButtonWrapper({ to }: Props): JSX.Element {
     <Button
       className="back-button"
       onClick={handleBack}
-      label={"Back 🤡🤡🤡"}
+      label={"Back"}
     />
   </ButtonContainer>
   );

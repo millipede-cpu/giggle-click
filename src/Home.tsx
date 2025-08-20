@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import AddJoke from "./AddJoke";
 import BackButton from "./BackButton";
 import NextButton from "./NextButton";
-import { Button } from "../stories/Button";
 
 export default function Home(): JSX.Element {
-  const [count, setCount] = useState<number>(0);
+  
 
   return (
     <>
@@ -15,11 +14,7 @@ export default function Home(): JSX.Element {
         <BackButton to={"/joke-fetch"} />
         <StyledTitle>Giggle Click</StyledTitle>
         <div className="card">
-          <Button
-            className="counter-button incremented-number"
-            onClick={() => setCount((count) => count + 1)}
-            label={`Count is ${count}`}
-          />
+          
           <AddJoke status={""} />
         </div>
       </HomeContainer>

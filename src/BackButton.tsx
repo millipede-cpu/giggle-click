@@ -1,10 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../stories/Button";
 import React from "react";
+import styled from "styled-components";
 
 interface Props {
   to: string;
 }
+
+const ButtonContainer = styled.div`
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+`;
 
 export default function BackButtonWrapper({ to }: Props): JSX.Element {
   const navigate = useNavigate();
@@ -19,10 +27,12 @@ export default function BackButtonWrapper({ to }: Props): JSX.Element {
   };
 
   return (
+    <ButtonContainer> 
     <Button
       className="back-button"
       onClick={handleBack}
       label={"Back 🤡🤡🤡"}
     />
+  </ButtonContainer>
   );
 }

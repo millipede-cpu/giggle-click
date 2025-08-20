@@ -33,6 +33,7 @@ const HomeContainer = styled.div`
   box-sizing: border-box;
   width: 100vw;
   min-height: 100vh;
+  position:relative;
 `;
 
 const StyledTitle = styled.h1`

@@ -2,6 +2,50 @@ import { useState } from "react";
 import BackButton from "./BackButton";
 import NextButton from "./NextButton";
 import React from "react";
+import styled from "styled-components";
+import { Button } from "../stories/Button";
+
+const RateJokeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color:rgb(239, 245, 183);
+`;
+
+const ButtonRow = styled.div`
+  display: flex;
+  justify-content: center;   
+  align-items: center;     
+  gap: 2rem;
+  width: 100%;
+  min-height: 200px;   
+`
+
+const ButtonColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;     
+  justify-content: center;   
+  height: 100%;
+`;
+
+const HappyButtonResult = styled.div`
+  font-size: 2rem;
+  height: 2rem;
+`;
+
+const SadButtonResult = styled.div`
+ font-size: 2rem;
+ height: 2rem;
+`
+
+const Title = styled.h2`
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+`;
 
 export default function RateJoke() {
   const [happy, setHappy] = useState(false);
@@ -11,34 +55,40 @@ export default function RateJoke() {
   try {
     return (
       <>
-        <NextButton to={"/joke-fetch"} />
-        <BackButton to={"/card-flip-game"} />
-        <h1>Rate Joke 👍🏼🎭👎🏼</h1>
-        <button
+      <NextButton to={"/joke-fetch"} />
+      <BackButton to={"/card-flip-game"} />
+      <RateJokeContainer>
+        <Title>Rate Your Joke 🎭</Title>
+        <ButtonRow>
+        <ButtonColumn>
+          <Button
           className="happy-click"
           onClick={() => setHappy(!happy)}
           data-testid="happy-button"
-        >
-          Happy
-        </button>
-        {happy ? (
-          <span className="happy" data-testid="happy-emoji">
+          label="Happy"
+          />
+          {happy ? (
+          <HappyButtonResult className="happy" data-testid="happy-emoji">
             &#128514;
-          </span>
-        ) : null}
-
-        <button
+          </HappyButtonResult>
+          ) :  null}
+     
+        </ButtonColumn>
+        <ButtonColumn>
+          <Button
           className="sad-click"
           onClick={() => setSad(!sad)}
           data-testid="sad-button"
-        >
-          Sad
-        </button>
-        {sad ? (
-          <span className="sad" data-testid="sad-emoji">
+          label="Sad"
+          />
+          {sad ? (
+          <SadButtonResult className="sad" data-testid="sad-emoji">
             &#128529;
-          </span>
-        ) : null}
+          </SadButtonResult>
+          ) : null}
+        </ButtonColumn>
+        </ButtonRow>
+      </RateJokeContainer>
       </>
     );
   } catch (error) {
@@ -47,8 +97,3 @@ export default function RateJoke() {
     return <p>Oh dear an error occured, no Ratings for us today</p>;
   }
 }
-
-// We wrapped the code that might throw an error in a try block. This includes the JSX code that generates the UI, as well as the onClick handlers that update the component's state.
-// If an error is thrown anywhere in the try block, execution will jump to the catch block.
-// In the catch block, we log the error to the console using console.error, and return a simple error message to the UI.
-// By adding this error handling, we're making our code more robust and defensive. If something unexpected happens during the execution of the component, we'll be able to handle it gracefully and provide feedback to the user.

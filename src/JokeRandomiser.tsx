@@ -81,14 +81,14 @@ const PageStyle = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: #df5d3d;
+  background:rgb(255 165 165);
   height: 100vh;
   width: 100%;
 `;
 
 const Title = styled.h1`
-  font-size: 3rem;
-  color: #bb7cf8;
+  font-size: 2rem;
+  color:rgb(170, 99, 240);
 `;
 
 const JokeBox = styled.p`

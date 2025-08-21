@@ -6,12 +6,12 @@ import Home from "./Home";
 import JokeFetch from "./JokeFetch";
 import { ErrorBoundary } from "react-error-boundary";
 import {
-  // ChangeEventHandler,
+
   MouseEventHandler,
   useRef,
   useState,
 } from "react";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { Button } from "../stories/Button";
 import React from "react";
 
@@ -82,6 +82,15 @@ const FailPretty = styled.div`
   }
 `;
 
+const GlobalStyle = createGlobalStyle`
+  body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #add8e6;
+  }
+`;
+
 function ErrorFallback({ error, resetErrorBoundary }: ErrorFallbackProps) {
   return (
     <FailPretty role="alert">
@@ -93,38 +102,17 @@ function ErrorFallback({ error, resetErrorBoundary }: ErrorFallbackProps) {
   );
 }
 
-// function Bomb({ firstName }: BombProps): JSX.Element {
-//   if (firstName === "bomb") throw new Error("💥 CABOOM 💥");
-
-//   return <p>{`Hi ${firstName}`}</p>;
-// }
 
 export default function App(): JSX.Element {
   const [firstName, setFirstName] = useState("");
   const usernameRef = useRef<HTMLInputElement>(null);
 
-  // const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-  //   const target = event.target as HTMLInputElement;
-  //   if (target.name === "bomb" && target.value === "bomb") {
-  //     event.preventDefault();
-  //   } else {
-  //     setFirstName(target.value);
-  //   }
-  // };
+
 
   return (
     <>
-      {/* <div>
-        <label>
-          {`Your name: (don't type "bomb"): `}
-          <input
-            placeholder={`type "bomb"`}
-            value={firstName}
-            onChange={handleChange}
-            ref={usernameRef}
-          />
-        </label>
-        <div> */}
+    <GlobalStyle/>
+
       <ErrorBoundary
         FallbackComponent={ErrorFallback}
         onReset={() => {
@@ -137,10 +125,9 @@ export default function App(): JSX.Element {
         }}
         resetKeys={[firstName]}
       >
-        {/* <Bomb firstName={firstName} /> */}
+
       </ErrorBoundary>
-      {/* </div>
-      </div> */}
+   
 
       <BrowserRouter>
         <Routes>

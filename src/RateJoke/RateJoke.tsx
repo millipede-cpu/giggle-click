@@ -1,9 +1,9 @@
 import { useState } from "react";
-import BackButton from "./BackButton";
-import NextButton from "./NextButton";
+import BackButton from "../BackButton/BackButton";
+import NextButton from "../NextButton/NextButton";
 import React from "react";
 import styled from "styled-components";
-import { Button } from "../stories/Button";
+import { Button } from "../../stories/Button";
 
 const RateJokeContainer = styled.div`
   display: flex;

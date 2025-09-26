@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled, { keyframes } from "styled-components";
-import BackButton from "./BackButton";
-import NextButton from "./NextButton";
-import { Button } from "../stories/Button";
+import BackButton from "../BackButton/BackButton";
+import NextButton from "../NextButton/NextButton";
+import { Button } from "../../stories/Button";
 import { ErrorBoundary, useErrorBoundary } from "react-error-boundary";
 import React from "react";
 

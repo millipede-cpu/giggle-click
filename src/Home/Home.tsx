@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import AddJoke from "./AddJoke";
-import BackButton from "./BackButton";
-import NextButton from "./NextButton";
+import AddJoke from "../AddJoke/AddJoke";
+import BackButton from "../BackButton/BackButton";
+import NextButton from "../NextButton/NextButton";
 
 export default function Home(): JSX.Element {
   

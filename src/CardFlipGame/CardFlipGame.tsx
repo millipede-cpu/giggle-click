@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import BackButton from "./BackButton";
-import NextButton from "./NextButton";
-import Card from "./Card";
+import BackButton from "../BackButton/BackButton";
+import NextButton from "../NextButton/NextButton";
+import Card from "../Card/Card";
 import React from "react";
 
 interface CardsProps {

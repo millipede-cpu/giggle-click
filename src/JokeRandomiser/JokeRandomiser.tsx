@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import BackButton from "./BackButton";
-import NextButton from "./NextButton";
+import BackButton from "../BackButton/BackButton";
+import NextButton from "../NextButton/NextButton"
 import React, { useCallback, useState } from "react";
-import { Button } from "../stories/Button";
+import { Button } from "../../stories/Button";
 
 // Define a type for the Joke object
 interface Joke {

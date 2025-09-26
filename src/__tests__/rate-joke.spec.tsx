@@ -1,9 +1,8 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import RateJoke from "../RateJoke";
+import RateJoke from "../RateJoke/RateJoke";
 import TestErrorBoundary from "../TestErrorBoundary";
-import CustomErrorBoundaryWrapper from "../CustomErrorBoundaryWrapper";
 
 describe("RateJoke", () => {
   test("renders the happy and sad buttons", () => {
@@ -86,11 +85,11 @@ describe("RateJoke", () => {
 
   test("clicking the Happy button 10 times updates the happy state", () => {
     render(
-      <CustomErrorBoundaryWrapper>
+      <TestErrorBoundary>
         <MemoryRouter>
           <RateJoke />
         </MemoryRouter>
-      </CustomErrorBoundaryWrapper>
+      </TestErrorBoundary>
     );
 
     const happyButton = screen.getByTestId("happy-button"); // Select the Happy button by data-testid
@@ -98,26 +97,18 @@ describe("RateJoke", () => {
       fireEvent.click(happyButton);
     }
 
-    // Define a custom text matcher function to find the emoji
-    const findHappyEmoji = (content: string, element: Element | null) => {
-      return (
-        element &&
-        element.tagName.toLowerCase() === "span" &&
-        element.classList.contains("happy") &&
-        /😄/.test(content)
-      );
-    };
-
-    expect(findHappyEmoji).toBeTruthy();
+    // Check for the happy emoji after clicking
+    const happyEmoji = screen.getByTestId("happy-emoji");
+    expect(happyEmoji).toBeTruthy();
   });
 
   test("clicking the Sad button 10 times updates the sad state", () => {
     render(
-      <CustomErrorBoundaryWrapper>
+      <TestErrorBoundary>
         <MemoryRouter>
           <RateJoke />
         </MemoryRouter>
-      </CustomErrorBoundaryWrapper>
+      </TestErrorBoundary>
     );
 
     const sadButton = screen.getByTestId("sad-button"); // Select the Sad button by data-testid
@@ -125,16 +116,8 @@ describe("RateJoke", () => {
       fireEvent.click(sadButton);
     }
 
-    // Define a custom text matcher function to find the emoji
-    const findSadEmoji = (content: string, element: Element | null) => {
-      return (
-        element &&
-        element.tagName.toLowerCase() === "span" &&
-        element.classList.contains("sad") &&
-        /😢/.test(content)
-      );
-    };
-
-    expect(findSadEmoji).toBeTruthy();
+    // Check for the sad emoji after clicking
+    const sadEmoji = screen.getByTestId("sad-emoji");
+    expect(sadEmoji).toBeTruthy();
   });
 });

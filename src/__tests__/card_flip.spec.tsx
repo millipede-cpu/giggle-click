@@ -1,16 +1,15 @@
 import { render, screen } from "@testing-library/react";
-import Card from "../Card"; // Import your Card component
+import Card from "../Card/Card"; // Import your Card component
 import React from "react";
-import CustomErrorBoundaryWrapper from "../CustomErrorBoundaryWrapper";
+import CustomErrorBoundaryWrapper from "../CustomErrorBoundaryWrapper/CustomErrorBoundaryWrapper";
 
 it("renders a card with data-face-up true", () => {
   render(
     <CustomErrorBoundaryWrapper>
       <Card
         value="A"
-        faceUp={true}
+        isFlipped={true}
         onClick={() => {}}
-        cards={[]} // Provide a dummy cards prop
       />
     </CustomErrorBoundaryWrapper>
   );

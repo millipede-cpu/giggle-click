@@ -1,5 +1,5 @@
 import React from "react";
-import { IJokes } from "./interfaces";
+import { IJokes } from "../interfaces";
 
 interface Props {
   joke: IJokes;

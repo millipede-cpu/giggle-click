@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Button } from "../stories/Button";
+import { Button } from "../../stories/Button";
 import React from "react";
 import styled from "styled-components";
 

@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import JokeRandomiser from "./JokeRandomiser";
-import RateJoke from "./RateJoke";
-import CardFlipGame from "./CardFlipGame";
-import Home from "./Home";
-import JokeFetch from "./JokeFetch";
+import JokeRandomiser from "../JokeRandomiser/JokeRandomiser";
+import RateJoke from "../RateJoke/RateJoke";
+import CardFlipGame from "../CardFlipGame/CardFlipGame";
+import Home from "../Home/Home";
+import JokeFetch from "../JokeFetch/JokeFetch";
 import { ErrorBoundary } from "react-error-boundary";
 import {
 
@@ -12,7 +12,7 @@ import {
   useState,
 } from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import { Button } from "../stories/Button";
+import { Button } from "../../stories/Button";
 import React from "react";
 
 interface AppRoute {
